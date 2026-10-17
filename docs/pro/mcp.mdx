@@ -1,30 +1,30 @@
 ---
-title: Connect drawDB to AI tools with MCP
-description: Configure the read-only drawDB MCP server so Claude Desktop, Cursor, Cline, Goose, Windsurf, and compatible clients can inspect cloud schemas.
+title: 用 MCP 把 drawDB 连接到 AI 工具
+description: 配置只读 drawDB MCP 服务，让 Claude Desktop、Cursor、Cline、Goose、Windsurf 等兼容客户端可以读取云端 schema。
 ---
 
-The drawDB Model Context Protocol (MCP) server gives compatible AI coding tools read-only access to the database schemas stored in your drawDB Pro cloud workspaces.
+drawDB 的 Model Context Protocol (MCP) 服务为兼容的 AI 编程工具提供对 drawDB Pro 云工作区里数据库 schema 的**只读**访问。
 
-It runs locally as a Node.js child process, authenticates to the drawDB API with your API key, and exposes focused tools for diagrams, tables, fields, relationships, enums, and PostgreSQL composite types.
+它作为本地 Node.js 子进程运行，用你的 API Key 鉴权到 drawDB API，并暴露面向图表、表、列、关系、枚举、PostgreSQL 复合类型的精细工具。
 
-<Callout title="Read-only by design" type="info">
-  MCP cannot create, change, export, restore, or delete diagrams. It does not expose notes, subject areas, canvas layout, SQL export, or DBML export.
+<Callout title="设计上只读" type="info">
+  MCP 不能创建、修改、导出、恢复或删除图表。也不暴露注释、主题区域、画布布局、SQL 导出和 DBML 导出。
 </Callout>
 
-## Before you begin
+## 准备事项
 
-You need:
+你需要：
 
-- A drawDB plan with cloud storage and at least one cloud-backed diagram.
-- Node.js 20 or newer installed on the computer running your MCP client.
-- An MCP client that can launch a local `stdio` server.
-- A drawDB API key. Follow [Create and manage API keys](/pro/api-keys) first.
+- 一份启用了云存储、且至少有 1 张云端图表的 drawDB 套餐。
+- 运行 MCP 客户端的机器上装好 Node.js 20 或更高版本。
+- 能启动本地 `stdio` 服务的 MCP 客户端。
+- 一个 drawDB API Key。参见 [创建与管理 API Key](/pro/api-keys)。
 
-The published npm package is `@drawdb/mcp`. It connects to `https://api.drawdb.app` by default.
+发布的 npm 包名是 `@drawdb/mcp`，默认连 `https://api.drawdb.app`。
 
-## Configure your MCP client
+## 配置 MCP 客户端
 
-Add a local stdio server using this configuration:
+按下面的 JSON 配置加入一个本地 stdio 服务：
 
 ```json
 {
@@ -40,25 +40,25 @@ Add a local stdio server using this configuration:
 }
 ```
 
-Replace `ddb_your_key_here` with the token shown when you created the key. Keep the key inside the `env` object for the drawDB server entry.
+把 `ddb_your_key_here` 替换成你创建 Key 时拿到的 token。把 Key 放在 drawdb 服务条目内的 `env` 字段里。
 
-Claude Desktop, Cursor, Cline, Goose, Windsurf, and other clients that launch local MCP processes can use the same command, arguments, and environment variable. The screen or configuration-file location is client-specific; look for an option to add a **local** or **stdio** MCP server.
+Claude Desktop、Cursor、Cline、Goose、Windsurf，以及其他会启动本地 MCP 进程的客户端都可以用相同的 command / args / 环境变量。具体在哪里加要看每个客户端的界面——找"添加本地 / stdio MCP 服务"的入口。
 
-Restart or reload the client using its normal MCP-server workflow, then confirm that a server named `drawdb` and its tools are available.
+按客户端平时的 MCP 服务流程重启或重载，然后确认名为 `drawdb` 的服务及其工具都可用。
 
-<Callout title="Web-only clients are not supported yet" type="warn">
-  The current package uses local stdio transport. It cannot be connected directly to web-only ChatGPT or claude.ai sessions because drawDB does not yet expose the hosted HTTP and OAuth transport those clients require.
+<Callout title="暂不支持纯 Web 端客户端" type="warn">
+  当前包用本地 stdio transport。没法直连到只有 Web 的 ChatGPT 或 claude.ai 会话，因为 drawDB 还没提供这两类客户端需要的 HTTP + OAuth transport。
 </Callout>
 
-## Test the connection
+## 测试连接
 
-Try this prompt in your MCP client:
+在你的 MCP 客户端里发这条提示：
 
-> List my drawDB diagrams, then summarize the schema of the diagram named “Orders”.
+> 列出我的 drawDB 图表，然后把名为 "Orders" 的图表 schema 总结一下。
 
-The agent should call `list_diagrams` first, select the returned diagram ID, and reuse that ID for schema tools.
+Agent 应该先调 `list_diagrams`，拿到图表 ID 后再针对该 ID 调用 schema 工具。
 
-To test the API independently of an MCP client, place your key in an environment variable and run:
+如果想绕过 MCP 客户端直接测 API，把 Key 放进环境变量并跑：
 
 ```bash
 curl --fail-with-body \
@@ -66,38 +66,38 @@ curl --fail-with-body \
   https://api.drawdb.app/api/v1/diagrams
 ```
 
-## Available tools
+## 可用工具
 
-| Tool | Required parameters | What it returns |
+| 工具 | 必填参数 | 返回内容 |
 | --- | --- | --- |
-| `list_diagrams` | None | Diagram IDs, names, database dialects, and update times visible across the key owner's team memberships |
-| `get_schema_summary` | `diagram_id` | Dialect, counts, and table names |
-| `list_tables` | `diagram_id` | Table names, comments, and field counts |
-| `describe_table` | `diagram_id`, `table_name` | Columns, constraints, defaults, comments, enum values, and indices |
-| `list_relationships` | `diagram_id` | Foreign keys, cardinality, referential actions, and composite-column mappings |
-| `describe_relationship` | `diagram_id`, `from_table`, `to_table` | Relationships in the specified direction between two tables |
-| `list_enums` | `diagram_id` | User-defined enum names and values |
-| `list_custom_types` | `diagram_id` | PostgreSQL composite types and their fields |
-| `search_tables` | `diagram_id`, `query` | Matching table or column names and comments |
+| `list_diagrams` | 无 | Key 主人所属团队内的图表 ID、名字、数据库方言、更新时间 |
+| `get_schema_summary` | `diagram_id` | 方言、统计与表名清单 |
+| `list_tables` | `diagram_id` | 表名、注释、列数 |
+| `describe_table` | `diagram_id`、`table_name` | 列、约束、默认值、注释、枚举值、索引 |
+| `list_relationships` | `diagram_id` | 外键、基数、引用动作、复合列映射 |
+| `describe_relationship` | `diagram_id`、`from_table`、`to_table` | 两个表之间指定方向的若干关系 |
+| `list_enums` | `diagram_id` | 用户自定义的枚举名与取值 |
+| `list_custom_types` | `diagram_id` | PostgreSQL 复合类型及其字段 |
+| `search_tables` | `diagram_id`、`query` | 匹配的表或列名与注释 |
 
-Table names passed to `describe_table` are case-insensitive but must otherwise match the complete table name. Relationship lookup is directional: `from_table` and `to_table` must follow the direction reported by `list_relationships`.
+传给 `describe_table` 的表名大小写不敏感，但必须完全匹配表名。关系查询是**有方向的**：`from_table` 与 `to_table` 必须按 `list_relationships` 返回的方向填写。
 
-`search_tables` can return the same table more than once when several columns or comments match the query.
+`search_tables` 在一条查询匹配到多列或多注释时，可能返回同一个表的多次结果。
 
-## What an API key can see
+## API Key 能看到什么
 
-The MCP process runs as the user who created its key. It is not limited to the workspace currently selected in the drawDB editor.
+MCP 进程是用创建它的用户的身份跑的，**不**限于编辑器里当前选中的工作区。
 
-- `list_diagrams` searches cloud-diagram metadata across all of that user's team memberships. In the current release, it can include a diagram whose schema request is later denied by Invite-only or No-access rules.
-- Each schema request performs a fresh access check.
-- Explicitly revoked access, leaving a team, key expiration, or key deletion stops future access.
-- Local browser diagrams are not uploaded automatically and cannot be discovered by MCP.
+- `list_diagrams` 会扫描该用户所有团队内的云图表元数据。当前版本里，结果里可能包含一个 schema 读取后来被 "Invite only" 或 "No access" 拒绝的图表。
+- 每次 schema 请求都会重新做访问检查。
+- 显式撤销权限、退出团队、Key 过期或被删，都会阻止以后的访问。
+- 仅本地的浏览器图表不会自动上传，也无法被 MCP 发现。
 
-Use a separate key for each device or client so that you can revoke one connection without interrupting the others.
+建议为每台设备 / 客户端单独创建 Key，这样吊销一个不会影响其他连接。
 
-## Connect to a self-hosted backend
+## 连接到自部署后端
 
-`DRAWDB_BASE_URL` is optional. Set it only when you are developing against another drawDB API deployment:
+`DRAWDB_BASE_URL` 是可选的。仅在你针对另一个 drawDB API 部署进行开发时设置：
 
 ```json
 {
@@ -114,22 +114,22 @@ Use a separate key for each device or client so that you can revoke one connecti
 }
 ```
 
-## Troubleshooting MCP
+## MCP 排错
 
-| Symptom | What to check |
+| 症状 | 检查项 |
 | --- | --- |
-| `set DRAWDB_API_KEY env var before launching` | The client did not pass the key. Confirm that `env` is inside the drawDB server entry. |
-| `npx` or Node cannot be found | Install Node.js 20+ and ensure the desktop client can access it through its process `PATH`. |
-| `401 missing api key` | `DRAWDB_API_KEY` did not reach the process. |
-| `401 invalid api key format` | The value must begin with `ddb_`; an editor session token will not work. |
-| `401 invalid or expired api key` | The key expired, was deleted, was copied incorrectly, or its full value was lost. Create a replacement. |
-| `402 cloud_storage requires a Pro plan` | The account no longer has the cloud-storage entitlement. Review the plan or trial status. |
-| No diagrams are returned | Confirm the diagram is saved to the cloud and the key owner still belongs to its workspace. |
-| `400 Invalid diagramId` | Call `list_diagrams` and use its UUID instead of a diagram name. |
-| `403 not your diagram` | The summary can be listed, but the key owner does not pass the diagram's current schema-access check. |
-| `404 diagram not found` | The diagram was deleted or the ID is incorrect. |
-| `Table not found` | Call `list_tables` and pass the complete table name. |
-| `No relationships from A to B` | Reverse lookups do not match. Use the direction returned by `list_relationships`. |
-| Recent edits are missing | Wait for drawDB's cloud save to finish, then query the diagram again. |
+| `set DRAWDB_API_KEY env var before launching` | 客户端没把 Key 传进来。确认 `env` 在 drawdb 服务条目里。 |
+| `npx` 或 Node 找不到 | 安装 Node.js 20+，并确保桌面客户端能通过其进程 `PATH` 找到。 |
+| `401 missing api key` | `DRAWDB_API_KEY` 没进入进程。 |
+| `401 invalid api key format` | Key 必须以 `ddb_` 开头；编辑器会话 token 不能用。 |
+| `401 invalid or expired api key` | Key 过期、被删、被错误复制，或完整值丢失。创建替换 Key。 |
+| `402 cloud_storage requires a Pro plan` | 账号已没有云存储权限。检查套餐或试用状态。 |
+| 没有返回图表 | 确认图表已存到云，且 Key 主人仍属于它所在的工作区。 |
+| `400 Invalid diagramId` | 先调 `list_diagrams`，用返回的 UUID 而非图表名。 |
+| `403 not your diagram` | 摘要可以列出，但 Key 主人没有通过当前 schema 访问检查。 |
+| `404 diagram not found` | 图表已被删，或 ID 错误。 |
+| `Table not found` | 先调 `list_tables`，传入完整的表名。 |
+| `No relationships from A to B` | 方向反了。改用 `list_relationships` 返回的方向。 |
+| 最近改动未出现 | 等 drawDB 的云保存完成后，再次查询。 |
 
-If a key may have been exposed, [rotate it immediately](/pro/api-keys#rotate-a-key).
+如果 Key 疑似泄露，请立即 [轮换它](/pro/api-keys#rotate-a-key)。

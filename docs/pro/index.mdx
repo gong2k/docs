@@ -1,51 +1,51 @@
 ---
-title: drawDB Pro documentation
-description: Learn drawDB Pro cloud storage, workspaces, sharing, live collaboration, version history, AI, API keys, MCP, and billing.
+title: drawDB Pro 文档
+description: 了解 drawDB Pro 的云存储、工作区、分享、实时协作、版本历史、AI、API Key、MCP 与计费。
 ---
 
-drawDB Pro adds cloud-backed workflows to the open-source diagram editor. You keep the same canvas, SQL dialects, imports, exports, and shortcuts while gaining accounts, cloud diagrams, public links, AI assistance, versions, and integrations.
+drawDB Pro 在开源版图表编辑器的基础上增加了云端能力。你仍在用同一套画布、SQL 方言、导入、导出与快捷键，同时获得账号、云图表、公开链接、AI 助手、版本管理与集成能力。
 
 <Cards>
-  <Card title="Get started with Pro" href="/pro/getting-started">
-    Sign in, understand personal and team workspaces, and move your first diagram to the cloud.
+  <Card title="Pro 入门" href="/pro/getting-started">
+    登录、了解个人与团队工作区，把第一张图表搬上云端。
   </Card>
-  <Card title="Share and collaborate" href="/pro/sharing-permissions">
-    Create public links or manage team access to a cloud diagram.
+  <Card title="分享与协作" href="/pro/sharing-permissions">
+    创建公开链接，或管理团队对某张云图表的访问权限。
   </Card>
-  <Card title="Use the AI assistant" href="/pro/ai-assistant">
-    Generate and edit tables, columns, relationships, notes, and subject areas from a prompt.
+  <Card title="用 AI 助手" href="/pro/ai-assistant">
+    通过一段提示词生成或编辑表、列、关系、注释与主题区域。
   </Card>
-  <Card title="Connect an MCP client" href="/pro/mcp">
-    Let compatible AI coding tools inspect your cloud schemas through a read-only integration.
+  <Card title="接入 MCP 客户端" href="/pro/mcp">
+    让兼容的 AI 编程工具以只读方式查看云端 schema。
   </Card>
 </Cards>
 
-## Choose the right workflow
+## 选择合适的工作流
 
-| Capability | Pro Solo | Pro Team |
+| 能力 | Pro Solo | Pro Team |
 | --- | :---: | :---: |
-| Cloud diagrams and sync | ✓ | ✓ |
-| Public read-only links | ✓ | ✓ |
-| AI schema assistant | ✓ | ✓ |
-| Manual version history and migrations | ✓ | ✓ |
-| API keys and MCP | ✓ | ✓ |
-| Team workspaces and roles | — | ✓ |
-| Per-diagram team permissions | — | ✓ |
-| Live collaboration | — | ✓ |
+| 云图表与同步 | ✓ | ✓ |
+| 公开只读链接 | ✓ | ✓ |
+| AI schema 助手 | ✓ | ✓ |
+| 手动版本历史与迁移 | ✓ | ✓ |
+| API Key 与 MCP | ✓ | ✓ |
+| 团队工作区与角色 | — | ✓ |
+| 每张图表的团队权限 | — | ✓ |
+| 实时协作 | — | ✓ |
 
-Plan availability and pricing can change. Use the [current pricing page](https://www.drawdb.app/pricing) and **Settings → Billing** as the source of truth for your account.
+套餐可用性与价格可能变化。请以 [价格页](https://www.drawdb.app/pricing) 与 **Settings → Billing**（设置 → 账单）作为你账户的最终依据。
 
-## Pro concepts
+## Pro 概念
 
-- **Local diagram:** stored in the current browser. It can be edited without an account but is not available to Pro integrations.
-- **Cloud diagram:** stored in the workspace selected when it is created or uploaded. Cloud diagrams enable Pro sharing, versions, team collaboration, and MCP.
-- **Personal workspace:** the private workspace associated with a Solo account.
-- **Team workspace:** a shared container with Admin and Member roles. It enables team permissions and live collaboration.
-- **Public link:** an unauthenticated, view-only URL for one cloud diagram.
-- **API key:** a user-owned secret that authenticates MCP and the read-only schema API.
+- **本地图表（Local diagram）：** 存在当前浏览器中，可以不登录就编辑，但无法被 Pro 的集成访问到。
+- **云图表（Cloud diagram）：** 存在创建或上传时选定的工作区里，让 Pro 分享、版本、团队协作与 MCP 都能用。
+- **个人工作区（Personal workspace）：** Solo 账户自带的私有工作区。
+- **团队工作区（Team workspace）：** 带 Admin 与 Member 两种角色的共享容器，用于团队权限与实时协作。
+- **公开链接（Public link）：** 一张云图表的免登录只读 URL。
+- **API Key：** 用户持有的密钥，用于 MCP 与只读 schema API 的鉴权。
 
-Core modeling behavior is documented in [Create a database diagram](/create-diagram), [Customize the editor](/customizing-editor), and [Keyboard shortcuts](/shortcuts).
+通用建模行为见 [创建数据库图表](/create-diagram)、[自定义编辑器](/customizing-editor) 与 [键盘快捷键](/shortcuts)。
 
-<Callout title="Cloud features need a saved diagram" type="info">
-  Pro sharing, version history, collaboration, and MCP work from the cloud copy. AI can also operate on an open local diagram for an eligible signed-in account; its schema is still sent to the AI service as context.
+<Callout title="云功能需要先保存图表" type="info">
+  Pro 的分享、版本历史、协作与 MCP 都跑在云端副本上。AI 助手也能在已打开的本地图表上运行（前提是账号有相应权限），但它仍然会把当前 schema 作为上下文发给 AI 服务。
 </Callout>

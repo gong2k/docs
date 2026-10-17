@@ -1,67 +1,67 @@
 ---
-title: How drawDB works
-description: Understand drawDB's React architecture, SVG canvas, browser storage, SQL and DBML imports, exports, sharing, and localization.
+title: drawDB 是如何工作的
+description: 理解 drawDB 的 React 架构、SVG 画布、浏览器存储、SQL 与 DBML 导入、导出、分享与本地化机制。
 ---
 
-The open-source drawDB editor is a React application built with Vite. It keeps editor state in React Context providers rather than a separate Redux or Zustand store.
+drawDB 开源版编辑器是一个基于 React + Vite 的应用。它的状态由 React Context 维护，并未使用独立的 Redux 或 Zustand。
 
-## Editor canvas
+## 编辑画布
 
-The canvas is an SVG surface driven by pointer events. Tables, subject areas, and much of each note are rendered through SVG `foreignObject` elements. Relationships are SVG paths calculated from the positions and dimensions of their connected fields.
+画布是受指针事件驱动的 SVG 表面。表、主题区域、注释的大部分文本内容都通过 SVG `foreignObject` 元素渲染；关系连线则是根据所连字段的位置和尺寸实时计算出的 SVG 路径。
 
-This structure lets drawDB combine familiar HTML controls with a zoomable and pannable diagram surface.
+这种结构让 drawDB 可以把熟悉的 HTML 控件与可缩放、可平移的图表表面合二为一。
 
-## Browser persistence
+## 浏览器持久化
 
-OSS diagrams and custom templates are stored in IndexedDB through Dexie. Editor preferences, custom datatype aliases, and version cache information are stored in local storage.
+开源版的图表与自定义模板通过 Dexie 存入 IndexedDB。编辑器偏好、自定义数据类型别名、版本缓存信息则存放于 localStorage。
 
-Because this data belongs to a specific browser profile, export important diagrams before clearing site data, resetting the browser, or moving to another device.
+由于这些数据绑定在某个特定的浏览器配置档上，清理站点数据、重置浏览器或更换设备**前**，请先把重要图表导出。
 
-## Sharing
+## 分享
 
-The OSS Share action publishes the current diagram JSON as a private GitHub Gist. A shared URL loads that snapshot and creates a local copy for the recipient. It is not a live synchronization channel.
+开源版 "Share" 操作会把当前图表的 JSON 发布为一个私有 GitHub Gist。收到链接的人打开后，会加载该快照并在本地**副本**中打开——它不是实时同步通道。
 
-## Imports
+## 导入
 
-drawDB can import:
+drawDB 可以导入：
 
-- drawDB JSON and DDB files
+- drawDB JSON 与 DDB 文件
 - DBML
-- SQL for MySQL, PostgreSQL, SQLite, MariaDB, Microsoft SQL Server, and Oracle SQL
+- SQL（MySQL、PostgreSQL、SQLite、MariaDB、Microsoft SQL Server、Oracle SQL）
 
-SQL source is parsed into an abstract syntax tree and then converted into drawDB tables, fields, indexes, enums, types, and relationships where the source dialect provides enough information.
+SQL 源会先被解析成 AST，再转成 drawDB 的表、字段、索引、枚举、类型与关系（前提是源方言提供了足够信息）。
 
-## Exports
+## 导出
 
-The editor can export diagrams as:
+编辑器可以把图表导出为：
 
 - SQL
-- PNG, JPEG, SVG, and PDF
+- PNG、JPEG、SVG、PDF
 - drawDB JSON
 - DBML
 - Mermaid
 - Markdown
 
-SQL output uses dialect-specific generators. Image and document formats use the rendered diagram and dedicated serialization or export libraries.
+SQL 输出用按方言分开的生成器；图像与文档格式基于已渲染的图表，并借助特定的序列化或导出库生成。
 
-## Internationalization
+## 国际化
 
-Interface strings live under `src/i18n/locales` in the drawDB repository. Adding a language requires:
+界面字符串存放在 drawDB 仓库的 `src/i18n/locales` 目录下。新增语言需要：
 
-1. Creating a translated locale file based on [en.js](https://github.com/drawdb-io/drawdb/blob/main/src/i18n/locales/en.js).
-2. Importing the locale in `src/i18n/i18n.js`.
-3. Adding it to the language list.
-4. Registering it in the i18next resources map.
+1. 基于 [en.js](https://github.com/drawdb-io/drawdb/blob/main/src/i18n/locales/en.js) 创建一个翻译过的 locale 文件。
+2. 在 `src/i18n/i18n.js` 里 import 这个 locale。
+3. 把 locale 加入语言列表。
+4. 在 i18next 的 resources 表里注册。
 
-## Pro architecture
+## Pro 版架构
 
-drawDB Pro layers authentication, teams, cloud diagram storage, permissions, billing, AI tools, and real-time collaboration around the same core editor. Those services are separate from the browser-local OSS persistence and Gist sharing described above.
+drawDB Pro 在同一个核心编辑器之上，又叠加了认证、团队、云图表存储、权限、计费、AI 工具与实时协作能力。这些服务独立于上面提到的浏览器本地持久化与 Gist 分享。
 
 <Cards>
-  <Card title="Explore the source" href="https://github.com/drawdb-io/drawdb">
-    Browse the editor components, contexts, importers, exporters, and localization files.
+  <Card title="查看源码" href="https://github.com/drawdb-io/drawdb">
+    浏览编辑器组件、Context、导入器、导出器与本地化文件。
   </Card>
-  <Card title="Read the sharing guide" href="/share">
-    Learn exactly what an OSS share link publishes and how recipients load it.
+  <Card title="阅读分享指南" href="/share">
+    了解开源版分享链接究竟发布了什么、接收方如何加载。
   </Card>
 </Cards>

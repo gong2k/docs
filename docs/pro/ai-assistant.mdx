@@ -1,82 +1,82 @@
 ---
-title: Use the drawDB AI schema assistant
-description: Prompt drawDB Pro AI to create and edit tables, columns, relationships, notes, and subject areas in a saved cloud diagram.
+title: drawDB AI schema 助手
+description: 用自然语言提示 drawDB Pro AI 在已保存的云图表上创建或编辑表、列、关系、注释与主题区域。
 ---
 
-The AI schema assistant turns natural-language requests into changes on the open diagram. It can explain its work and call editor tools while the response streams.
+AI schema 助手会把自然语言请求变成对当前图表的修改。它能在响应流式输出的同时解释自己的动作，并调用编辑器工具。
 
-## Open the assistant
+## 打开助手
 
-Open an existing diagram with a saved diagram ID, then:
+打开一张带 ID 的已保存图表，然后：
 
-- Select **Ask AI**, or
-- Press `Ctrl/Cmd + Shift + K`.
+- 点 **Ask AI**，或
+- 按 `Ctrl/Cmd + Shift + K`。
 
-The assistant needs a signed-in account with active cloud entitlement. It can operate on either a cloud diagram or an existing browser-local diagram. A brand-new canvas without a saved diagram ID, a signed-out session, or a read-only plan state cannot send AI requests.
+助手需要登录且云端权限可用。它可以操作云图表，也可以操作已存在的浏览器本地图表。全新空白画布、未登录会话或只读权限状态下，AI 请求无法发送。
 
-<Callout title="Local diagrams are still sent as AI context" type="warn">
-  Using Ask AI on a Local diagram sends its current schema and your prompt to the AI service even though the diagram itself remains browser-local. Move it to the cloud only when you want cloud persistence and other cloud-only features.
+<Callout title="本地图表也会作为 AI 上下文发出" type="warn">
+  在本地图表上点 Ask AI 时，图表当前的 schema 与你输入的提示词都会被送到 AI 服务——即便图表本身仍是浏览器本地状态。等你决定要用云端持久化与其他云端独有功能时，再把它移上云。
 </Callout>
 
-## What the assistant can change
+## 助手的变更范围
 
-The current tool set can:
+当前可用的工具集能：
 
-- Create, rename, recolor, describe, and delete tables.
-- Add, update, and delete columns.
-- Create, update, and delete relationships.
-- Add, update, and delete notes.
-- Add, update, and delete subject areas.
+- 创建、改名、重新着色、描述、删除表。
+- 新增、修改、删除列。
+- 创建、修改、删除关系。
+- 新增、修改、删除注释。
+- 新增、修改、删除主题区域。
 
-It does not currently have tools for enums, custom composite types, account settings, team membership, sharing permissions, versions, billing, or MCP configuration.
+它当前还**不能**修改枚举、自定义复合类型、账号设置、团队成员、分享权限、版本、账单或 MCP 配置。
 
-## Write effective prompts
+## 写好提示词
 
-Describe the goal, database rules, and constraints. For example:
+把目标、数据库规则和约束都描述清楚。例如：
 
-> Add customers, orders, and order items for PostgreSQL. Use UUID primary keys, timestamptz audit fields, a unique customer email, and restrictive foreign-key deletes.
+> 为 PostgreSQL 增加 customers、orders、order_items。使用 UUID 主键、timestamptz 审计字段、客户邮箱唯一、外键删除采用 restrictive。
 
-For an existing schema, name the affected tables and ask the assistant to preserve unrelated elements:
+对已有 schema 时，列出受影响的表，并要求助手保留不相关的元素：
 
-> Add soft deletion to users and organizations. Use deleted_at, keep current keys and relationships, and explain every change before finishing.
+> 给 users 和 organizations 增加软删除。使用 deleted_at，保留现有主键与关系，每次变更前先说明。
 
-Useful follow-ups include:
+有用的后续指令还有：
 
-- “Suggest relationships between my existing tables.”
-- “Add created_at and updated_at to every business table.”
-- “Normalize this order model and explain the tradeoffs.”
-- “Group billing tables into a subject area and add a note describing the boundary.”
+- "建议一下我现有表之间的关系。"
+- "为每张业务表添加 created_at 和 updated_at。"
+- "规范化这个订单模型，并说明取舍。"
+- "把与计费相关的表归到一个主题区域，并写一条注释说明边界。"
 
-Press `Enter` to send and `Shift + Enter` for a new line.
+按 `Enter` 发送，按 `Shift + Enter` 换行。
 
-## Review tool calls
+## 核对工具调用
 
-Tool calls can modify the diagram as they arrive; there is no separate approval step for each change. Watch the canvas and the tool summaries in the conversation.
+工具调用会在到达时直接修改图表，每次修改没有单独的审批步骤。请关注画布和对话里的工具摘要。
 
-After a response:
+每次响应结束后：
 
-1. Check names, types, nullability, defaults, and keys.
-2. Inspect every created relationship and referential action.
-3. Confirm the result matches the selected database dialect.
-4. Record a [manual version](/pro/version-history) once the result is accepted.
+1. 检查名称、类型、是否可空、默认值与键。
+2. 检查每条新创建的关系与引用动作。
+3. 确认结果与你选定的数据库方言一致。
+4. 确认无问题后，记录一条 [手动版本](/pro/version-history)。
 
-<Callout title="AI can make mistakes" type="warn">
-  Treat generated schema changes as a draft. Validate them before exporting or applying migration SQL.
+<Callout title="AI 会出错" type="warn">
+  把 AI 生成的 schema 改动当成草稿。在导出或应用迁移 SQL 之前请自己验证。
 </Callout>
 
-## Diagram context and conversation state
+## 图表上下文与对话状态
 
-The current diagram schema is included as context when you send a request. Do not put credentials, private keys, or production secrets in table comments, notes, prompts, or other diagram text.
+发送请求时会带上当前图表 schema 作为上下文。不要把凭证、私钥或生产环境的秘密放进表注释、注释、提示词等任何图表文本里。
 
-Assistant conversation state belongs to the current frontend session and is not saved as diagram version history. Refreshing or leaving the editor may discard it; record important decisions elsewhere.
+助手的会话状态只属于当前前端会话，不作为版本历史保存。刷新或离开编辑器可能会丢掉它；重要的决定请另行记录。
 
-## Troubleshooting
+## 排错
 
-| Message or symptom | Resolution |
+| 提示或现象 | 处理方式 |
 | --- | --- |
-| “Open a saved diagram to use the assistant.” | Save the new canvas as a local or cloud diagram so it has an ID, then retry. |
-| **Sign up to use** | Sign in before sending a request. |
-| **Upgrade to use** | The account does not currently have writable cloud access. Review Billing. |
-| The response stopped | Retry with a shorter prompt after checking the network. |
-| The assistant changed the wrong element | Stop making further changes, inspect the schema, and restore from a manual version if necessary. |
-| A requested enum or custom type was not created | Those schema elements are not supported by the current AI tool set; create them manually. |
+| "Open a saved diagram to use the assistant." | 把当前空白画布保存为本地或云图表，让它有 ID 后再试。 |
+| **Sign up to use** | 请先登录再发请求。 |
+| **Upgrade to use** | 当前账号没有可写云的权限，请去检查 Billing。 |
+| 响应中断 | 检查网络后用更短的提示词重试。 |
+| 助手改错了元素 | 停止继续改动、检查 schema，必要时从手动版本恢复。 |
+| 请求的枚举 / 自定义类型没创建 | 这些元素不在当前 AI 工具集支持范围，请手动创建。 |

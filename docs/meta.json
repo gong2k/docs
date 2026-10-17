@@ -1,8 +1,8 @@
 {
-  "title": "drawDB Documentation",
+  "title": "drawDB 文档",
+  "description": "drawDB 全套文档：开源版与 Pro 版的界面、数据库建模、分享、AI、API Key、MCP 等指南。",
   "pages": [
     "index",
-    "pro",
     "create-diagram",
     "customizing-editor",
     "settings",

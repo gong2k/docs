@@ -1,68 +1,68 @@
 ---
-title: Create and manage drawDB API keys
-description: Create, rename, rotate, expire, and revoke drawDB Pro API keys for MCP clients and other integrations.
+title: 创建与管理 drawDB API Key
+description: 为 MCP 客户端等集成创建、改名、轮换、过期与撤销 drawDB Pro API Key。
 ---
 
-API keys let scripts and integrations act as your drawDB account. The current read-only API is used by the [drawDB MCP server](/pro/mcp).
+API Key 让脚本与集成可以代表你的 drawDB 账号行动。**当前只读 API** 由 [drawDB MCP 服务](/pro/mcp) 使用。
 
-<Callout title="Treat keys like passwords" type="warn">
-  A key can discover cloud-diagram metadata across your team memberships and can read schemas that pass a fresh access check. Never commit a key to source control, paste it into chat, or share it with another person.
+<Callout title="把 Key 当密码管" type="warn">
+  Key 可以发现你所属团队内的云图表元数据，并能读取通过访问检查的 schema。**永远不要**把 Key 提交进代码库、贴在对话里、或给其他人。
 </Callout>
 
-## Create a key
+## 创建 Key
 
-1. Open the drawDB editor and sign in.
-2. Select your avatar, then **Manage account**.
-3. Open **API keys**.
-4. Select **Create key**.
-5. Give it a recognizable name, such as `MCP on work laptop`.
-6. Choose an expiration: 30, 60, or 90 days; one year; or no expiration.
-7. Create the key and copy the complete token immediately.
+1. 打开 drawDB 编辑器并登录。
+2. 点你的头像，再选 **Manage account**（管理账号）。
+3. 打开 **API keys**。
+4. 点 **Create key**。
+5. 给它取个易于识别的名字，例如 `MCP on work laptop`。
+6. 选择过期时间：30、60 或 90 天；一年；或不过期。
+7. 创建并**立刻复制完整 token**。
 
-New keys default to a 30-day expiration. Names can contain up to 80 characters.
+新 Key 默认 30 天过期。名字最多 80 个字符。
 
-<Callout title="The token is shown once" type="warn">
-  drawDB stores a hash rather than the complete token. If you close the creation dialog without saving it, create a replacement key; the original value cannot be recovered.
+<Callout title="Token 只显示一次" type="warn">
+  drawDB 只保存 token 的哈希，不存完整 token。如果关闭创建对话框前没保存 token，请创建替换 Key；原始值无法找回。
 </Callout>
 
-Keys begin with `ddb_`. The API keys table later shows only a short prefix, expiration date, and last-used date so you can identify the key without exposing it.
+Key 以 `ddb_` 开头。API Key 列表中只会展示前缀、过期时间和最后使用时间，便于识别而不暴露 Key 本身。
 
-## Rename a key
+## 改名
 
-Use the action menu next to a key and select **Edit**. Renaming changes only the label—it does not rotate the token or change its expiration.
+点 Key 旁边的操作菜单选 **Edit**。改名只修改标签；不轮换 token，也不改过期时间。
 
-## Rotate a key
+## 轮换 Key
 
-Use this sequence to replace a key without interrupting an integration:
+按下面这个流程替换 Key 而不影响集成：
 
-1. Create a replacement key.
-2. Update every client that uses the old key.
-3. Confirm the replacement can connect.
-4. Delete the old key.
+1. 创建替换 Key。
+2. 更新所有用到旧 Key 的客户端。
+3. 确认替换 Key 能连上。
+4. 删掉旧 Key。
 
-## Revoke a key
+## 撤销 Key
 
-1. Open the key's action menu and select **Delete**.
-2. Type `DELETE` in the confirmation dialog.
-3. Select **Delete key**.
+1. 打开 Key 的操作菜单选 **Delete**。
+2. 在确认框里输入 `DELETE`。
+3. 点 **Delete key**。
 
-Deletion takes effect immediately. Every client still configured with that key will stop authenticating.
+撤销立即生效。任何还在用这个 Key 的客户端都会停止鉴权。
 
-## Understand key access
+## 理解 Key 的可见性
 
-API keys are attached to your user account—not to the active workspace in the editor.
+API Key 绑定到**你的用户账号**，而不是编辑器里当前选中的工作区。
 
-- `list_diagrams` can expose IDs, names, dialects, and update times across every team you belong to. In the current release, that list can include a diagram whose schema read is later denied by Invite-only or No-access rules.
-- Changing the active workspace does not scope the key to that workspace.
-- Every schema request performs a fresh permission check; removing access blocks the schema even when its summary still appears in the list.
-- Local-only OSS diagrams are not available through the API.
-- Creating or renaming keys requires an active plan with cloud storage.
-- You can still delete a key after a plan or trial ends.
+- `list_diagrams` 可能暴露你所属每个团队的图表 ID、名字、方言、更新时间。当前版本里，这个列表可能包含某个 schema 读取稍后会被 "Invite only" 或 "No access" 规则拒绝的图表。
+- 切换工作区**不会**把 Key 的可见范围限定到该工作区。
+- 每次 schema 请求都会重新做一次权限检查；移除访问后，schema 也会被屏蔽，即使摘要还出现在列表里。
+- 仅本地的开源版图表不会通过 API 暴露。
+- 创建或改名 Key 需要套餐内有效的云存储权限。
+- 即使套餐或试用到期，你仍然可以删除 Key。
 
-For least-privilege access, use a dedicated drawDB account with membership only in the workspaces the integration needs.
+按最小权限原则，建议为集成专门创建一个 drawDB 账号，仅把你需要的那个工作区给它。
 
-## Choose an expiration
+## 选择过期时间
 
-Prefer the shortest practical lifetime. Non-expiring keys reduce maintenance but increase the impact of an unnoticed leak. The **Last used** value can help you identify abandoned keys before revoking them.
+建议选**尽量短**的可用期限。永不过期的 Key 减少了运维，但一旦泄露影响更大。**Last used**（最后使用）字段能帮你识别长时间没人用的 Key，再去撤销。
 
-Continue with [Connect drawDB to AI tools with MCP](/pro/mcp).
+继续阅读 [用 MCP 连接 drawDB 与 AI 工具](/pro/mcp)。

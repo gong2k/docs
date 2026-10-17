@@ -1,67 +1,66 @@
 ---
-title: Account, profile, and sign-in
-description: Sign in to drawDB with email, Google, or GitHub; troubleshoot verification codes; and manage your Pro profile.
+title: 账号、个人资料与登录
+description: 用邮箱、Google 或 GitHub 登录 drawDB；排查验证码常见问题；管理你的 Pro 个人资料。
 ---
 
-drawDB supports passwordless email codes, Google, and GitHub. The same account can belong to personal and team workspaces.
+drawDB 支持无密码邮箱验证码、Google 和 GitHub。同一账号可以同时属于个人工作区与团队工作区。
 
-## Sign in with email
+## 用邮箱登录
 
-1. Open the account menu and select **Sign in**.
-2. Enter your email and select **Continue with email**.
-3. Enter the six-digit numeric code from the message.
+1. 打开账号菜单选 **Sign in**（登录）。
+2. 输入邮箱后选 **Continue with email**（用邮箱继续）。
+3. 输入邮件中的 6 位数字验证码。
 
-The form submits automatically when all six digits are entered. Use **Use a different email** to restart with another address.
+填满 6 位后表单会自动提交。想换邮箱就点 **Use a different email**（使用其他邮箱）。
 
-The **Resend code** action becomes available after 60 seconds. A newly requested code replaces the previous active code.
+**Resend code**（重新发送验证码）按钮在 60 秒后才可用。新请求的码会覆盖之前仍然有效的旧码。
 
-<Callout title="Verification-code limits" type="info">
-  Codes expire and stop working after repeated incorrect attempts. If a code is expired or exhausted, request a new one. Authentication requests are also rate-limited, so wait before retrying repeatedly.
+<Callout title="验证码限制" type="info">
+  验证码会过期，连续多次输错后会失效。如果验证码过期或失败次数用尽，请申请一个新的。鉴权请求本身也会限流，所以请不要反复重试。
 </Callout>
 
-## Sign in with Google or GitHub
+## 用 Google 或 GitHub 登录
 
-Select **Continue with Google** or **Continue with GitHub** on the sign-in page. The provider account must supply a verified email address. GitHub sign-in specifically needs a verified primary email.
+在登录页面选 **Continue with Google** 或 **Continue with GitHub**。提供方账号必须有一个已验证的邮箱地址。GitHub 登录特别要求一个**已验证的主邮箱**。
 
-If the provider reports an expired or invalid sign-in link, return to drawDB and begin the sign-in flow again.
+如果提供方提示登录链接已过期或非法，回到 drawDB 重新发起登录即可。
 
-## Complete onboarding
+## 完成引导
 
-New users may be asked about their role, institution, intended use, and how they found drawDB. These questions personalize the experience and can be skipped.
+新用户可能会被问及角色、机构、用途和发现 drawDB 的渠道。这些信息用于个性化体验，可以跳过。
 
-If you selected a Team plan, drawDB asks you to name a team before opening its workspace.
+如果你选的是 Team 套餐，drawDB 会要求你先给团队命名再打开其工作区。
 
-## Open account settings
+## 打开账号设置
 
-In the editor, select your avatar and then **Manage account**. The Settings dialog contains:
+在编辑器里点你的头像，再选 **Manage account**（管理账号）。Settings 对话框里包含：
 
-- **Account:** profile, plan summary, and log out
-- **Teams:** workspaces, members, invitations, and roles
-- **API keys:** integration credentials
-- **Integrations:** MCP setup entry point
-- **Community:** drawDB community and support links
-- **Billing:** plan and subscription controls, when you are allowed to manage them
+- **Account（账号）：** 个人资料、套餐概览与退出登录
+- **Teams（团队）：** 工作区、成员、邀请、角色
+- **API keys（API Key）：** 集成凭据
+- **Integrations（集成）：** MCP 配置入口
+- **Community（社区）：** drawDB 社区与支持链接
+- **Billing（账单）：** 在你被允许管理时，用于管理套餐与订阅
 
-## Update your profile
+## 修改个人资料
 
-In **Settings → Account**:
+在 **Settings → Account** 里：
 
-- Edit **Display name** and move focus away from the field to save it.
-- Review the account email. It cannot currently be edited from this screen.
-- Select the avatar pencil to manage the image through Gravatar.
-- Review the current plan and open Billing when available.
-- Select **Log out** to end the browser session.
+- 编辑 **Display name**（显示名），失焦后即保存。
+- 查看账号邮箱。暂时无法在此页面编辑邮箱。
+- 点头像上的铅笔，通过 Gravatar 管理头像。
+- 查看当前套餐，必要时打开 Billing。
+- 点 **Log out**（退出）结束浏览器会话。
 
-Your display name and profile color are used in team lists and collaboration presence.
+你的显示名与头像颜色会用在团队列表与协作在线状态里。
 
-## Common sign-in problems
+## 登录常见问题
 
-| Problem | Resolution |
+| 问题 | 解决方式 |
 | --- | --- |
-| The email did not arrive | Check spam, confirm the address, wait for the resend timer, then request a new code. |
-| The code is incorrect or expired | Request a new code; only the latest active code should be used. |
-| Too many attempts | Wait before requesting or verifying another code. |
-| GitHub has no verified primary email | Verify a primary email in GitHub or use another sign-in method. |
-| The OAuth link expired | Restart sign-in from drawDB instead of reusing the old callback URL. |
-| An invite opens the wrong account | Log in with the exact email address that received the invitation. |
-
+| 收不到邮件 | 检查垃圾箱、确认地址、等到倒计时再点 resend，然后重新申请。 |
+| 验证码错误或过期 | 申请新码；只能使用最新一条仍然有效的验证码。 |
+| 重试次数过多 | 等待鉴权限流的冷却时间再申请或验证新码。 |
+| GitHub 没有已验证的主邮箱 | 在 GitHub 里添加并验证一个主邮箱，或改用其他方式登录。 |
+| OAuth 链接过期 | 回到 drawDB 重新触发登录，不要复用旧 callback 链接。 |
+| 邀请邮件打开错账号 | 用收到邀请时的那个邮箱登录。 |

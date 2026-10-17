@@ -1,64 +1,63 @@
 ---
-title: Live collaboration in drawDB Pro
-description: Collaborate on Team Pro cloud diagrams with presence, live cursors, relationship previews, automatic connection, and access controls.
+title: drawDB Pro 实时协作
+description: 在 Team Pro 云图表上与他人协作，包含在线状态、远程光标、关系预览、自动连接与访问控制。
 ---
 
-Live collaboration lets eligible Team Pro members edit the same cloud diagram together. It starts automatically when the diagram opens—there is no separate collaboration toggle.
+实时协作让有资格的 Team Pro 成员共同编辑同一张云图表。该功能在图表打开时会自动启动——**没有**单独的开关。
 
-## Requirements
+## 必备条件
 
-Every collaborator needs:
+每位协作者都需要：
 
-- Membership in the diagram's team workspace.
-- **Can edit** access to the diagram.
-- A Team Pro workspace with live collaboration enabled.
-- A cloud-backed diagram rather than a local diagram or template.
+- 是该图表所在团队工作区的成员。
+- 对该图表拥有 **Can edit**（可编辑）权限。
+- 一个启用了实时协作的 Team Pro 工作区。
+- 是**云端备份的图表**，而不是本地图表或模板。
 
-Pro Solo, view-only members, and public-link visitors do not join the live editing room.
+Pro Solo 用户、只读成员和公开链接访客都不会加入实时编辑房间。
 
-## What collaborators see
+## 协作者能看到什么
 
-- Presence avatars for other connected users.
-- Remote cursors moving on the canvas.
-- Relationship lines while another person is connecting fields.
-- Schema changes as peers create, update, or delete supported diagram elements.
+- 其他在线用户的存在头像。
+- 在画布上移动的远程光标。
+- 别人在连接列时画出的关系线。
+- 同事创建、修改或删除受支持元素时的 schema 改动。
 
-Each browser continues saving the shared diagram to the cloud. The live service relays operations and presence; it does not replace cloud persistence.
+每个浏览器仍然把共享的图表保存到云端。实时服务负责中转操作与存在信息，并不会取代云端持久化。
 
-## Connection status
+## 连接状态
 
-The dot on your avatar shows the live-session state:
+你头像上的小圆点显示实时会话状态：
 
-| Color | Meaning |
+| 颜色 | 含义 |
 | --- | --- |
-| Green | Live collaboration is connected. |
-| Amber | drawDB is connecting or waiting for the diagram's first cloud save. |
-| Red | Collaboration is unavailable because of access, plan, network, or service configuration. |
+| 绿色 | 实时协作已连上。 |
+| 琥珀色（橙黄） | drawDB 正在连接，或在等图表首次云保存完成。 |
+| 红色 | 因访问权限、套餐、网络或服务配置不可用。 |
 
-Hover over the dot for a more specific message.
+悬停圆点可以看到更具体的信息。
 
-## Start a session
+## 启动一次会话
 
-1. Open a saved diagram in a Team workspace.
-2. Confirm your permission is **Can edit**.
-3. Wait for the avatar dot to turn green.
-4. Share the normal diagram URL with another team member who has edit access.
+1. 在 Team 工作区里打开一张已保存的图表。
+2. 确认你的权限是 **Can edit**。
+3. 等头像圆点变绿色。
+4. 把该图表的常规 URL 分享给另一位拥有编辑权限的团队成员。
 
-A newly created diagram may stay amber until its first cloud write creates the shared record.
+新创建的图表在首次云写入完成前会一直显示琥珀色。
 
-## How persistence works
+## 持久化机制
 
-Connected peers exchange operations immediately. A peer also provides the current scene to someone joining an active room. Each editor then saves the resulting document through the normal cloud-save path.
+连上的协作者之间会即时交换操作。一个已存在的活动房间里，新加入的人会从别人那里拿到当前场景；之后每个编辑器还是会按正常云保存路径写入文档。
 
-When two people change the same element at nearly the same time, the last persisted write can determine the stored result. Coordinate destructive or large schema changes and record a [manual version](/pro/version-history) first.
+两个人几乎同时修改同一个元素时，**最后一次成功写入**会决定存储的结果。建议对破坏性或大型的 schema 改动进行协调，并先记录一条 [手动版本](/pro/version-history)。
 
-## Troubleshoot the status dot
+## 状态点排错
 
-- **Included in your current plan:** Team Pro is required; refresh the account after a plan change.
-- **You do not have edit access:** ask the creator or a team Admin for **Can edit**.
-- **Diagram is not in cloud storage:** move or save the diagram and wait for the first write.
-- **Cannot reach the collaboration service:** check the network, reload once, and retry.
-- **Server unavailable or not configured:** normal cloud editing may still work, but live presence will not. Try again later or contact support.
+- **套餐未包含：** 必须有 Team Pro；套餐变更后请刷新账号信息。
+- **你没有可编辑权限：** 让创建者或团队 Admin 给你 **Can edit**。
+- **图表没存在云端：** 把图表移过去或保存，并等首次写入完成。
+- **连不上协作服务：** 检查网络，刷新后重试。
+- **服务端不可用或没配：** 普通云编辑也许仍能工作，但实时在线状态不会。这种情况稍后再试或联系支持。
 
-If the dot remains amber after the diagram shows a completed cloud save, reload the diagram before escalating the issue.
-
+如果图表云保存指示器已经走完，但圆点还是琥珀色，请刷新图表再升级处理。

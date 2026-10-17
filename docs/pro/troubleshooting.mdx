@@ -1,96 +1,96 @@
 ---
-title: Troubleshoot drawDB Pro
-description: Resolve common drawDB Pro sign-in, cloud save, workspace, invitation, sharing, collaboration, AI, billing, API key, and MCP problems.
+title: drawDB Pro 故障排查
+description: 解决 drawDB Pro 常见的登录、云保存、工作区、邀请、分享、协作、AI、账单、API Key 与 MCP 问题。
 ---
 
-Start with the symptom below. Preserve an exported diagram before attempting recovery steps that could replace or delete data.
+根据下面的"症状"开始排查。在执行可能替换 / 删除数据的恢复步骤之前，请先保留一份导出的图表。
 
-## Account and verification
+## 账号与验证
 
-| Symptom | What to do |
+| 症状 | 操作 |
 | --- | --- |
-| Verification email did not arrive | Confirm the address, check spam, wait for **Resend code**, and request a new code. |
-| Code is expired or incorrect | Use only the newest code. Request another after the timer if needed. |
-| Too many verification attempts | Stop retrying and wait for the authentication limit to reset. |
-| OAuth link expired or was rejected | Return to drawDB and start sign-in again. Do not reuse the callback URL. |
-| GitHub sign-in reports no verified email | Add and verify a primary email in GitHub, or use email/Google sign-in. |
+| 验证邮件未到 | 确认地址、检查垃圾箱、等到 **Resend code**、再申请新码。 |
+| 验证码错误或过期 | 只用最新的验证码。等倒计时结束再申请。 |
+| 验证尝试次数过多 | 停下来等鉴权冷却，再继续。 |
+| OAuth 链接过期 / 被拒 | 回到 drawDB 重新登录，不要复用旧 callback URL。 |
+| GitHub 登录说没已验证邮箱 | 在 GitHub 添加并验证主邮箱，或改用邮箱 / Google 登录。 |
 
-See [Account, profile, and sign-in](/pro/account).
+参见 [账号、个人资料与登录](/pro/account)。
 
-## Cloud diagrams and access
+## 云图表与访问
 
-### The diagram is still Local
+### 图表仍是 Local
 
-Open it while signed in and select **Move** in the cloud banner. Confirm the intended workspace first and wait for the completed save state.
+登录后打开它，在云端横幅里点 **Move**。先确认目标工作区，再等保存状态走完。
 
-### Cloud saving failed
+### 云保存失败
 
-Keep the tab open, check the network, and retry a small edit. Export the diagram locally if the error persists. Do not assume an unsaved change reached the cloud.
+保持当前标签页开着，检查网络，然后做一次小改动重试。如果一直报错，请把图表导出到本地。**不要**假设没保存的改动已经上云。
 
-### The diagram is view-only
+### 图表只读
 
-Your member permission or current plan does not permit writes. Ask the creator or a team Admin for **Can edit**, or review **Settings → Billing** when the entire workspace is read-only.
+你的成员权限或当前套餐不允许写。请让创建者或团队 Admin 把权限改为 **Can edit**；若整个工作区都只读，就去 **Settings → Billing** 检查。
 
-### The diagram belongs to a team you no longer belong to
+### 图表属于你已不在的团队
 
-Ask a team Admin to invite the correct account again. Cloud access follows current workspace membership.
+让那个团队的 Admin 重新邀请正确账号。云端访问跟着当前的团队成员走。
 
-## Sharing
+## 分享
 
-| Symptom | What to do |
+| 症状 | 解决方式 |
 | --- | --- |
-| Share controls say the diagram is not saved | Move it to the cloud and wait for the save. |
-| Share controls say the diagram is empty | Add at least one table. |
-| A normal copied link denies access | Confirm the recipient is signed in, belongs to the team, and has diagram access. |
-| A public link should stop working | Revoke or disable public sharing; copy the replacement only to intended viewers. |
-| A member cannot edit | Change their permission to **Can edit** and confirm the diagram's audience permits access. |
+| 分享控件说图表未保存 | 把它移到云端，等保存完成。 |
+| 分享控件说图表为空 | 至少加一张表。 |
+| 普通复制链接拒绝访问 | 确认对方已登录、属于团队并具备图表访问权限。 |
+| 公开链接需要停用 | 撤销或关闭公开分享，只把替换链接发给目标人。 |
+| 成员没法编辑 | 把他的权限改成 **Can edit** 并确认图表的受众允许编辑。 |
 
-See [Share Pro diagrams and manage permissions](/pro/sharing-permissions).
+参见 [分享 Pro 图表与管理权限](/pro/sharing-permissions)。
 
-## Team invitations
+## 团队邀请
 
-| Error | Resolution |
+| 错误 | 处理 |
 | --- | --- |
-| Invitation expired or was revoked | Ask an Admin to create a fresh invitation. |
-| Sign in with the invited email | Log out and use the exact destination address. |
-| Already a member | Switch workspaces instead of accepting again. |
-| Team trial seat limit reached | Revoke an unused pending invitation or remove an unused member. |
-| Invitation email was not delivered | Revoke the pending invitation and invite the address again. |
+| 邀请过期或被撤销 | 让 Admin 重新创建邀请。 |
+| 用被邀请的邮箱登录 | 登出，用被邀请地址重新登录。 |
+| 已经是成员 | 直接切换工作区，别再次接受。 |
+| 团队试用席位已满 | 撤销未使用的邀请或删掉闲置成员。 |
+| 邀请邮件未送达 | 撤销该邀请，再用同邮箱重新邀请一次。 |
 
-## Live collaboration
+## 实时协作
 
-- **Amber dot:** wait for the first cloud save or connection attempt.
-- **Red—feature required:** Team Pro collaboration is not active for this workspace.
-- **Red—forbidden:** the account lacks edit permission.
-- **Red—not in cloud storage:** save or move the diagram first.
-- **Red—network/server:** reload once after checking connectivity; normal cloud editing may still work.
+- **琥珀色圆点：** 等待首次云保存或连接尝试。
+- **红色 — 套餐不支持：** 当前工作区没有 Team Pro 协作。
+- **红色 — 无权限：** 账号没有编辑权限。
+- **红色 — 不在云端：** 先把图表移过去或保存。
+- **红色 — 网络 / 服务：** 检查连通性后重试一次；普通云编辑也许仍可用。
 
-See [Live collaboration](/pro/live-collaboration).
+参见 [实时协作](/pro/live-collaboration)。
 
-## Versions and AI
+## 版本与 AI
 
-| Symptom | What to do |
+| 症状 | 处理 |
 | --- | --- |
-| **Record version** is unavailable | Save the diagram to the cloud and confirm you have edit access and an active Pro plan. |
-| “You have no changes to save.” | The current schema matches the latest recorded version. |
-| Migration has no SQL | Generic diagrams support JSON comparison only, or there are no structural schema changes. |
-| AI says to open a saved diagram | Save the new canvas as a local or cloud diagram so it has an ID. |
-| AI requests are locked | Sign in or restore active cloud access. |
+| **Record version** 不可点 | 把图表保存到云端，并确认你有编辑权限与有效的 Pro 套餐。 |
+| "You have no changes to save." | 当前 schema 跟最近记录的版本一致。 |
+| 迁移没有 SQL | Generic 图表只支持 JSON 比对，或没有结构性 schema 改动。 |
+| AI 提示要打开已保存图表 | 把当前画布保存成本地或云图表，让它有 ID。 |
+| AI 请求被锁 | 登录或恢复有效云端权限。 |
 
-## Billing activation
+## 账单激活
 
-If checkout remains pending, let the activation check finish, reopen the editor, and inspect **Settings → Billing**. Do not repeat checkout until you know the first payment failed. Contact support if activation still does not appear.
+如果结账一直挂着：等激活检查跑完、重开编辑器、检查 **Settings → Billing**。在确认第一次付款确实失败之前不要重复结账。激活仍未出现就联系支持。
 
-## API keys and MCP
+## API Key 与 MCP
 
-Common MCP errors are documented in [Connect drawDB to AI tools with MCP](/pro/mcp#troubleshooting-mcp). For a lost or exposed token, create a replacement, update the client, verify it, then [delete the old key](/pro/api-keys#revoke-a-key).
+MCP 的常见错误见 [用 MCP 连接 drawDB 与 AI 工具](/pro/mcp#troubleshooting-mcp)。Key 丢失或泄露时：创建替换 Key → 更新客户端 → 验证 → [删掉旧 Key](/pro/api-keys#revoke-a-key)。
 
-## Contact support
+## 联系支持
 
-Open the account Settings dialog and use **Community** for available drawDB links. When reporting a problem, include:
+打开账号 Settings 对话框，选 **Community** 查看可用的 drawDB 链接。报告问题时附上：
 
-- The workspace and diagram name, but not an API key or private share token.
-- The exact visible error message.
-- Whether the diagram is Local or Cloud.
-- Your browser and operating system.
-- The approximate time the issue occurred.
+- 工作区与图表名（**不要**贴 API Key 或私密分享 token）。
+- 屏幕上显示的完整错误信息。
+- 图表是 Local 还是 Cloud。
+- 浏览器与操作系统。
+- 问题发生的近似时间。
