@@ -1,38 +1,38 @@
 ---
-title: Share an OSS diagram
-description: Share a drawDB OSS diagram as a private GitHub Gist snapshot, configure an embed link, and understand how shared copies work.
+title: 分享开源版图表
+description: 把 drawDB 开源版图表分享为私有 GitHub Gist 快照、配置嵌入链接、并理解分享副本的工作原理。
 ---
 
-The open-source drawDB editor can publish a snapshot of a diagram and give you a link that others can open.
+开源版 drawDB 编辑器可以把图表的快照发布出去，生成一个他人也能打开的链接。
 
-## Create a share link
+## 创建分享链接
 
-1. Open the diagram.
-2. Select `Share` in the menubar.
-3. Copy the generated link.
+1. 打开图表。
+2. 在菜单栏点击 `Share`（分享）。
+3. 复制生成的链接。
 
-The URL includes a `shareId` query parameter. When a recipient opens it, drawDB downloads the snapshot and saves a local copy in that browser.
+URL 中会带一个 `shareId` 查询参数。当收件人打开时，drawDB 会下载该快照，并在其浏览器中保存一份**本地副本**。
 
-<Callout title="Sharing is not live collaboration">
-  An OSS share link transfers a snapshot. It does not let recipients edit your local diagram and does not start a real-time collaboration session. drawDB Pro provides team permissions and live collaboration separately.
+<Callout title="分享不等于实时协作">
+  开源版的分享链接传输的是一份快照。它不会让对方修改你本地的图表，也不会启动实时协作会话。drawDB Pro 提供了独立的团队权限与实时协作能力。
 </Callout>
 
-## How snapshots work
+## 快照机制
 
-Sharing creates a private GitHub Gist containing the diagram JSON. Opening Share again after making changes refreshes the published snapshot. The recipient's local copy does not remain synchronized with your diagram.
+分享操作会创建一个私有 GitHub Gist，里面存放图表 JSON。改完图后再点 Share，会刷新这个已发布的快照。收件人的本地副本不会与你保持同步。
 
-<Callout title="Private does not mean encrypted" type="warn">
-  Private Gists are not listed publicly, but anyone who obtains the URL may be able to access its contents. Do not place secrets or production credentials in a shared diagram.
+<Callout title="私有 ≠ 已加密" type="warn">
+  私有 Gist 不会被公开列出，但任何拿到 URL 的人都有机会访问其中的内容。不要在分享的图表里放私密或生产环境凭证。
 </Callout>
 
-Use `Unshare` to invalidate the currently published snapshot from the editor.
+在编辑器里点 `Unshare`（取消分享）可以立刻让已发布的快照失效。
 
-## Configure an embed link
+## 配置嵌入链接
 
-The Share dialog can also generate an embed-friendly URL. Its options let you:
+Share 对话框同时也会生成一个便于嵌入的 URL。选项可以让你：
 
-- Choose the initial light or dark theme.
-- Hide the menubar, sidebar, or toolbar.
-- Force those controls to remain hidden for viewers.
+- 选择初始的浅色或深色主题。
+- 隐藏菜单栏、侧栏或工具栏。
+- 强制这些控件始终对访客隐藏。
 
-For general information about Gists, see the [GitHub Gist documentation](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists).
+关于 Gist 的通用信息，请参阅 [GitHub Gist 文档](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists)。

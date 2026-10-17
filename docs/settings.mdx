@@ -1,27 +1,27 @@
 ---
-title: General settings
-description: Configure drawDB autosave, table width, language, custom datatypes, local backups, cache, and browser-stored diagram data.
+title: 通用设置
+description: 配置 drawDB 自动保存、表宽度、语言、自定义数据类型、本地备份、缓存与浏览器图表存储。
 ---
 
-Open the `Settings` menu to change preferences that apply across diagrams in the open-source editor. These settings are stored in the browser's local storage.
+打开 `Settings`（设置）菜单可以修改开源版编辑器中跨图表生效的偏好。这些偏好存储在浏览器的 localStorage 里。
 
-## Available settings
+## 可用设置
 
-| Setting | What it does |
+| 设置项 | 作用 |
 | --- | --- |
-| Show timeline | Displays the undo history for the current editing session. |
-| Autosave | Enables or disables automatic diagram saving. |
-| Table width | Sets the default width used to render tables. |
-| Language | Changes the editor interface language. |
-| Configure custom types | Creates local datatype aliases available while editing fields. |
-| Export saved data | Downloads a backup of locally stored drawDB data. |
-| Clear cache | Clears cached application data used by the editor. |
-| Flush storage | Permanently removes locally saved diagrams and templates from IndexedDB. |
+| 显示修改记录 | 在当前编辑会话中显示撤销历史。 |
+| 自动保存 | 启用或关闭图表的自动保存。 |
+| 表宽度 | 渲染表时使用的默认宽度。 |
+| 语言 | 切换编辑器的界面语言。 |
+| 配置自定义类型 | 创建在编辑字段时可用的本地数据类型别名。 |
+| 导出已保存数据 | 下载浏览器本地 drawDB 数据的备份。 |
+| 清除缓存 | 清除编辑器使用的应用缓存数据。 |
+| 清空存储 | 不可恢复地删除 IndexedDB 中本地保存的图表与模板。 |
 
-<Callout title="Back up before clearing storage" type="warn">
-  Export any diagrams and templates you want to keep before flushing storage or clearing browser site data. Browser-local data does not automatically follow you to another browser or device.
+<Callout title="清空存储前请先备份" type="warn">
+  在清空存储或清理浏览器站点数据前，请先导出要保留的图表与模板。浏览器本地数据不会自动跟随你到其他浏览器或设备。
 </Callout>
 
-## Settings versus diagram data
+## 设置与图表数据的区别
 
-Editor preferences and custom datatype aliases are stored in local storage. Diagrams and custom templates are stored separately in IndexedDB. Clearing one storage area may not clear the other.
+编辑器偏好与自定义数据类型别名存在 localStorage；图表与自定义模板则单独存在 IndexedDB。清掉其中一个区域的数据，可能不会清掉另一个。

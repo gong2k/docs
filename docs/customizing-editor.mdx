@@ -1,39 +1,39 @@
 ---
-title: Customize the editor
-description: Configure the drawDB canvas, grid, labels, field details, presentation mode, DBML view, and other editor display controls.
+title: 自定义编辑器
+description: 配置 drawDB 画布、网格、标签、列详情、演示模式、DBML 视图等界面显示控制项。
 ---
 
-Use the `View` menu to control the editor workspace without changing the underlying database schema.
+用 `View`（视图）菜单可以控制编辑器工作区，但不会修改底层数据库 schema。
 
-## View controls
+## 视图控制
 
-| Setting | What it does | Shortcut |
+| 设置项 | 作用 | 快捷键 |
 | --- | --- | --- |
-| Menubar | Shows or hides the header containing the diagram name and menus. | — |
-| Sidebar | Shows or hides the editor sidebar, which appears on the left in the default layout. | — |
-| Issues | Shows or hides the schema issues panel. | — |
-| Strict mode | Toggles issue checking behavior. | Ctrl/Cmd + Shift + M |
-| Presentation mode | Hides the menubar, sidebar, and toolbar, then enters fullscreen. | — |
-| Field details | Shows or hides field detail popovers. | Ctrl/Cmd + Shift + F |
-| Reset view | Resets canvas position and zoom. | Enter/Return |
-| Fit window | Fits the diagram to the available canvas. | Ctrl/Cmd + Alt + W |
-| Show grid | Shows or hides the canvas grid. | Ctrl/Cmd + Shift + G |
-| Snap to grid | Aligns moved elements to the grid. | — |
-| Show cardinality | Shows or hides relationship cardinality labels. | — |
-| Show relationship labels | Shows or hides relationship names. | — |
-| Show comments | Shows or hides field comments in tables. | — |
-| Show datatype | Shows or hides field datatypes in tables. | — |
-| DBML view | Opens or closes the DBML editor. | Alt + E |
-| Theme | Selects light, dark, or system appearance. | — |
-| Fullscreen | Enters or leaves browser fullscreen. | — |
+| 菜单栏 | 显示 / 隐藏顶栏（包含图表名与各菜单）。 | — |
+| 侧边栏 | 显示 / 隐藏编辑器左侧的侧栏（默认布局）。 | — |
+| 问题 | 显示 / 隐藏 schema 问题面板。 | — |
+| 严格模式 | 切换问题检查行为。 | Ctrl/Cmd + Shift + M |
+| 演示模式 | 隐藏菜单栏、侧栏与工具栏，并进入全屏。 | — |
+| 列详情 | 显示 / 隐藏列详情浮层。 | Ctrl/Cmd + Shift + F |
+| 重置视图 | 重置画布位置与缩放。 | Enter / Return |
+| 自适应窗口 | 把图表缩放到当前画布内。 | Ctrl/Cmd + Alt + W |
+| 显示网格 | 显示 / 隐藏画布网格。 | Ctrl/Cmd + Shift + G |
+| 对齐网格 | 拖动元素时按网格对齐。 | — |
+| 显示关系映射 | 显示 / 隐藏关系基数标签。 | — |
+| 显示关系标签 | 显示 / 隐藏关系名。 | — |
+| 显示列注释 | 显示 / 隐藏表里的列注释。 | — |
+| 显示数据类型 | 显示 / 隐藏表里的列数据类型。 | — |
+| DBML 视图 | 打开 / 关闭 DBML 编辑器。 | Alt + E |
+| 主题 | 切换浅色 / 深色 / 跟随系统。 | — |
+| 全屏 | 进入 / 退出浏览器全屏。 | — |
 
-## Canvas navigation
+## 画布导航
 
-- Drag with the middle or right mouse button to pan.
-- Use the mouse wheel to scroll vertically.
-- Hold Shift while using the wheel to scroll horizontally.
-- Hold Ctrl/Cmd while using the wheel to zoom.
+- 按住鼠标中键或右键拖动可平移。
+- 使用鼠标滚轮上下滚动。
+- 按住 Shift + 滚轮可水平滚动。
+- 按住 Ctrl/Cmd + 滚轮可缩放。
 
-<Callout title="Browser refresh">
-  Reset View uses Enter/Return. Avoid assigning Ctrl/Cmd + R to editor actions because browsers reserve it for reloading the page.
+<Callout title="浏览器刷新">
+  重置视图使用 Enter / Return。请不要把 Ctrl/Cmd + R 分配给编辑器操作——浏览器保留了它用于刷新页面。
 </Callout>
