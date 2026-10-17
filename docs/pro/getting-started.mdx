@@ -1,73 +1,72 @@
 ---
-title: Get started with drawDB Pro
-description: Sign in to drawDB Pro, complete onboarding, choose a workspace, and save or move a database diagram to the cloud.
+title: drawDB Pro 入门
+description: 登录 drawDB Pro、完成引导、选择工作区，以及将数据库图表保存或迁移到云端。
 ---
 
-You can start modeling without an account and sign in only when you need a cloud feature. Pro uses the same editor as the open-source experience, so existing modeling and import workflows still apply.
+即使不登录账号也可以开始建模，等真正要用到云功能时再登录。Pro 的编辑器体验与开源版完全一致，原有的建模与导入流程照常可用。
 
-## 1. Sign in
+## 1. 登录
 
-Open the [drawDB editor](https://www.drawdb.app/editor), select the account avatar, and choose **Sign in**. Continue with:
+打开 [drawDB 编辑器](https://www.drawdb.app/editor)，点击右上角的头像，选 **Sign in**（登录）。可用方式：
 
 - Google
 - GitHub
-- Email and a six-digit verification code
+- 邮箱加 6 位验证码
 
-New accounts are guided through a short, optional onboarding flow. Team-plan signups also name their first team workspace.
+新账号会被引导走一段简短、可选的 onboarding 流程。Team 套餐的注册还会要求你为第一个团队工作区起名。
 
-See [Account and sign-in](/pro/account) for verification-code and OAuth help.
+有关验证码与 OAuth 的问题，请见 [账号与登录](/pro/account)。
 
-## 2. Understand your workspace
+## 2. 理解你的工作区
 
-A cloud diagram always belongs to one workspace.
+每张云图表都属于某个工作区。
 
-- A **personal workspace** is intended for your own Pro Solo diagrams.
-- A **team workspace** contains diagrams shared with that team's members.
+- **个人工作区**用于你自己的 Pro Solo 图表。
+- **团队工作区**放给该团队成员共享的图表。
 
-If your account belongs to more than one workspace, use the workspace control next to the diagram title. Switching workspaces opens that workspace's most recently modified diagram, or a blank canvas when it has no diagrams yet.
+如果你的账号同时属于多个工作区，可用图表标题旁边的"工作区选择器"切换。切换工作区会打开该工作区中最近修改过的图表；如果该工作区还没有图表，就打开一张空白画布。
 
-<Callout title="Workspace selection affects new diagrams" type="warn">
-  Confirm the active workspace before creating or importing a diagram. The cloud diagram is saved into that workspace and access follows its membership.
+<Callout title="工作区选择会影响新建图表" type="warn">
+  创建或导入图表前请先确认当前工作区。云图表会被保存到该工作区，访问权限也按其成员关系走。
 </Callout>
 
-## 3. Create or import a diagram
+## 3. 创建或导入图表
 
-Create a blank diagram, start from a template, or import SQL, DBML, JSON, or DDB. Follow [Create a database diagram](/create-diagram) for the complete editor workflow.
+新建空白图表、从模板开始、或导入 SQL / DBML / JSON / DDB。完整工作流参见 [创建数据库图表](/create-diagram)。
 
-When you are signed in with active cloud access, newly saved diagrams are stored in the active workspace. The editor tracks the completed cloud write and shows the latest save state.
+当你登录且云端访问可用时，新保存的图表就会落到当前工作区。编辑器会跟踪云端写入的进度，并展示最新的保存状态。
 
-## 4. Move an existing local diagram
+## 4. 把已有的本地图表搬上云
 
-When a browser-local diagram is open, drawDB shows:
+当打开的是浏览器本地的图表，drawDB 会弹出提示：
 
-> This diagram is stored locally on your browser. Move it to the cloud?
+> 此图表存储在您的浏览器本地。要将其移至云端吗？
 
-Select **Move**. drawDB uploads the diagram, switches the open document to its cloud copy, and enables cloud-only features after the write succeeds.
+选 **Move**（移动）。drawDB 会把图表上传到当前工作区，写入成功后再把编辑器切到云端副本，云端独有功能随即启用。
 
-You can also use **File → Open** to see local and cloud diagrams together. The source label and filters help distinguish them.
+你也可以通过 **File → Open** 看到本地与云图表混合的列表，来源标签与筛选器可以帮助区分。
 
-## 5. Verify the cloud copy
+## 5. 确认云副本正常
 
-Before sharing or connecting an integration:
+在分享或接入集成前请确认：
 
-1. Wait for the save indicator to complete.
-2. Open **File → Open** and confirm the diagram is labeled **Cloud**.
-3. Confirm the workspace shown beside the diagram title is the intended one.
+1. 等待保存指示器走完。
+2. 打开 **File → Open**，确认该图表被标记为 **Cloud**。
+3. 检查图表标题旁边显示的工作区与你预期一致。
 
-You can now continue with:
+接下来可以继续：
 
 <Cards>
-  <Card title="Share the diagram" href="/pro/sharing-permissions">
-    Publish a view-only link or configure team access.
+  <Card title="分享图表" href="/pro/sharing-permissions">
+    发布只读链接或配置团队访问。
   </Card>
-  <Card title="Record a version" href="/pro/version-history">
-    Create a named schema checkpoint and generate migration SQL.
+  <Card title="记录版本" href="/pro/version-history">
+    创建带名字的 schema 检查点，并生成迁移 SQL。
   </Card>
-  <Card title="Ask AI" href="/pro/ai-assistant">
-    Create or modify schema elements with natural-language prompts.
+  <Card title="用 AI" href="/pro/ai-assistant">
+    用自然语言提示词创建或修改 schema 元素。
   </Card>
-  <Card title="Connect MCP" href="/pro/mcp">
-    Make the saved schema available to compatible coding agents.
+  <Card title="连接 MCP" href="/pro/mcp">
+    让兼容的编程 agent 看到已保存的 schema。
   </Card>
 </Cards>
-

@@ -1,89 +1,88 @@
 ---
-title: Teams, roles, and invitations
-description: Create and switch drawDB Pro team workspaces, manage Admin and Member roles, invite teammates, and understand seat behavior.
+title: 团队、角色与邀请
+description: 创建并切换 drawDB Pro 团队工作区，管理 Admin 与 Member 角色，邀请同事，了解席位行为。
 ---
 
-Pro Team organizes cloud diagrams inside shared workspaces. Each workspace has its own members, roles, diagrams, permissions, and subscription context.
+Pro Team 把云图表组织在共享工作区里。每个工作区都有自己的成员、角色、图表、权限与订阅上下文。
 
-## Personal and team workspaces
+## 个人与团队工作区
 
-- A **personal workspace** is private and cannot invite members.
-- A **team workspace** supports members, roles, diagram permissions, and live collaboration.
+- **个人工作区**是私有的，不能邀请成员。
+- **团队工作区**支持成员、角色、图表权限与实时协作。
 
-Use the workspace control beside the diagram title to change the active editing workspace. Use **Settings → Teams** to inspect or administer a workspace without changing the editor's current diagram.
+用图表标题旁的"工作区选择器"切换活动工作区；用 **Settings → Teams** 在不打开图表的情况下查看或管理某个工作区。
 
-## Team roles
+## 团队角色
 
-| Capability | Admin | Member |
+| 能力 | Admin | Member |
 | --- | :---: | :---: |
-| View team details | ✓ | ✓ |
-| Open diagrams allowed by their permissions | ✓ | ✓ |
-| Rename the team | ✓ | — |
-| Invite people and revoke invitations | ✓ | — |
-| Change member roles | ✓ | — |
-| Remove members | ✓ | — |
-| Manage every diagram in the team | ✓ | — |
-| Manage the team subscription and seats | ✓ | — |
+| 查看团队详情 | ✓ | ✓ |
+| 打开自己有权限的图表 | ✓ | ✓ |
+| 改团队名 | ✓ | — |
+| 邀请别人与撤销邀请 | ✓ | — |
+| 改成员角色 | ✓ | — |
+| 删除成员 | ✓ | — |
+| 管理团队里的每张图表 | ✓ | — |
+| 管理团队的订阅与席位 | ✓ | — |
 
-The final Admin cannot be demoted or removed. Assign another Admin first if responsibility needs to change.
+**最后的 Admin 不能降级或删除**。需要变更时先把另一个 Admin 任命好。
 
-## Invite a teammate
+## 邀请同事
 
-An Admin can invite someone from **Settings → Teams** or from a diagram's Share panel.
+Admin 可以从 **Settings → Teams** 或某张图表的 Share 面板发起邀请。
 
-1. Open the team workspace in **Settings → Teams**.
-2. Enter the person's email address.
-3. Choose **Member** or **Admin**, when that role selector is available.
-4. Send the invitation.
+1. 打开 **Settings → Teams**。
+2. 输入对方邮箱。
+3. 在可选的地方选 **Member** 或 **Admin**。
+4. 发送邀请。
 
-Invitations expire after seven days and are bound to the invited email address. The recipient must sign in with that exact address.
+邀请 7 天后过期，且绑定到那个被邀请的邮箱。收件人必须用该邮箱**精确**登录。
 
-<Callout title="A Share-panel invite joins the team" type="info">
-  Inviting an email from a diagram's Share panel is a workspace invitation, not access to only that one diagram. Configure the person's diagram permission separately after they join.
+<Callout title="Share 面板的邀请也是加团队" type="info">
+  从某张图表的 Share 面板邀请某个邮箱，是工作区邀请——**不是**只给那一张图表的访问权。等对方接受成为团队成员后，再单独配置对那张图表的权限。
 </Callout>
 
-## Accept an invitation
+## 接受邀请
 
-The recipient can accept from the emailed link. Pending invitations also appear in **Settings → Teams**, with a badge on the Teams tab.
+收件人通过邮件里的链接就能接受。未处理的邀请也会出现在 **Settings → Teams**，并带一个 Teams 标签徽章。
 
-After acceptance, drawDB switches into the joined workspace and opens its latest diagram, or a blank canvas when the team is empty.
+接受后，drawDB 会切换进新加入的工作区，并打开该工作区中最近的图表；如果该工作区还没有图表，则打开空白画布。
 
-If acceptance fails:
+如果接受失败：
 
-- **Invitation expired or revoked:** ask an Admin to create a new invitation.
-- **Wrong email:** sign out and use the invited address.
-- **Already a member:** switch to the workspace instead of accepting again.
-- **Invitation not found:** ask for a fresh link.
+- **邀请过期或被撤销：** 让 Admin 重新创建邀请。
+- **邮箱不对：** 登出后用被邀请的邮箱重新登录。
+- **已经是成员：** 直接切换到对应工作区，不要再次接受。
+- **找不到邀请：** 让 Admin 重新发一次链接。
 
-There is no resend action for an existing invitation. Revoke it and invite the address again when delivery fails.
+已发出的邀请没有"重发"按钮。投递失败时，撤销它再重新邀请。
 
-## Manage members
+## 管理成员
 
-In **Settings → Teams**, an Admin can:
+在 **Settings → Teams**，Admin 可以：
 
-- Rename the team.
-- Promote a Member to Admin.
-- Demote an Admin when another active Admin remains.
-- Remove a member.
-- Revoke a pending invitation.
+- 改团队名。
+- 把 Member 升为 Admin。
+- 当仍有另一位活跃 Admin 时，可以把 Admin 降为 Member。
+- 删除成员。
+- 撤销未接受的邀请。
 
-Removing a member immediately removes their access to that team's diagrams. Review diagram permissions and active integrations before removing someone.
+删除成员会立即撤销该成员对该团队图表的访问权。删除前请检查该成员的图表权限与正在生效的集成。
 
-## Seats and billing
+## 席位与账单
 
-Team plans are billed per active seat. Adding or removing an active member updates the subscription quantity and may create an immediate prorated adjustment through Paddle.
+Team 套餐按活跃成员数计费。增减活跃成员会修改 Paddle 订阅的数量，可能立即产生按比例调整。
 
-During a team trial, active members and pending invitations count toward the trial's seat limit. Revoke an unused invitation before inviting someone else when the team is at that limit.
+团队试用期间，活跃成员与未处理的邀请**都**计入试用席位上限。如果团队席位已满，先撤销未使用的邀请，再邀请新成员。
 
-See [Plans, trials, and billing](/pro/plans-billing) for subscription management.
+订阅管理见 [套餐、试用与账单](/pro/plans-billing)。
 
-## Switch workspaces
+## 切换工作区
 
-Select the current workspace beside the diagram title and choose another entry. drawDB:
+点图表标题旁的当前工作区，选另一项。drawDB 会：
 
-1. Changes the active workspace used for cloud requests.
-2. Opens the selected workspace's most recently modified diagram.
-3. Opens a blank canvas instead when the workspace has no accessible diagrams.
+1. 切换后续云端请求使用的工作区。
+2. 打开所选工作区最近修改过的图表。
+3. 若该工作区没有可访问的图表，则打开一张空白画布。
 
-Confirm the workspace before creating a new diagram or moving a local one to the cloud.
-
+在新建图表或把本地图表移到云端之前，请先确认工作区。

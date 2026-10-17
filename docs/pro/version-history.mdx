@@ -1,67 +1,68 @@
 ---
-title: Version history and schema migrations
-description: Record, preview, restore, compare, and delete drawDB Pro cloud versions, and generate up and down SQL migrations.
+title: 版本历史与 schema 迁移
+description: 记录、预览、恢复、比较、删除 drawDB Pro 云版本，并生成 up / down SQL 迁移脚本。
 ---
 
-Version history creates manual checkpoints for a cloud diagram. Use it before a large schema change, a collaboration session, or a restore.
+版本历史为云图表创建手动检查点。建议在大型 schema 改动、协作会话、或恢复操作之前使用。
 
-## Open version history
+## 打开版本历史
 
-Open a saved cloud diagram and select the branch/history icon. If the diagram has not reached the cloud yet, save or move it first.
+打开一张已保存的云图表，点击"分支/历史"图标。如果该图表还没上过云，先把它保存或移到云端。
 
-History is loaded 20 versions at a time. Select **Load more** to reach older checkpoints.
+历史按 20 条一拉加载。点 **Load more** 加载更早的检查点。
 
-## Record a version
+## 记录一个版本
 
-1. Select **Record version**.
-2. Review the JSON comparison with the most recent version.
-3. Add an optional message of up to 200 characters.
-4. Select **Create**.
+1. 点 **Record version**。
+2. 与最近一次的版本比对 JSON diff。
+3. 选填一句不超过 200 字符的备注。
+4. 点 **Create**。
 
-drawDB flushes pending cloud edits before it records the checkpoint. Creation is disabled when the schema has not changed, and identical snapshots are not duplicated.
+drawDB 在创建检查点前会先 flush 掉待写的云端编辑。当 schema 没变化时，Create 会处于禁用状态；同样的快照不会被重复创建。
 
-<Callout title="Versions are manual" type="info">
-  Current Pro behavior does not create automatic checkpoints. Record one explicitly whenever you need a recoverable milestone.
+<Callout title="版本是手动的" type="info">
+  当前的 Pro 行为不会自动创建检查点。需要在每个可恢复的里程碑点手动记录一条。
 </Callout>
 
-## Preview an older version
+## 预览更早的版本
 
-Select a history entry or choose **Preview** from its action menu. The canvas switches to a read-only representation of that version and shows a persistent **Back to current** control.
+选中一条历史记录，或在其操作菜单里选 **Preview**。画布会切换成该版本的只读视图，并显示一个常驻的 **Back to current** 控件。
 
-Previewing does not change the current cloud diagram. Select **Back to current** before resuming edits.
+预览**不会**改动当前的云图表。再继续编辑前，请先点 **Back to current**。
 
-## Restore a version
+## 恢复一个版本
 
-Users with edit access can choose **Restore this version**. Restoration replaces the current cloud diagram with the selected snapshot.
+具有编辑权限的用户可以选 **Restore this version**。恢复会把当前云图表替换成选中的快照。
 
-<Callout title="Protect the current state first" type="warn">
-  Record the current diagram as a manual version before restoring. Do not rely on restore to create an automatic backup of the state it replaces.
+<Callout title="先把当前状态保护起来" type="warn">
+  在恢复之前请先把当前图表记录成一条手动版本。不要依赖"恢复"作为被覆盖状态的自动备份。
 </Callout>
 
-After restoration, reload completes and the selected schema becomes the current diagram.
+恢复后会重新加载完成，所选的 schema 就成为当前图表。
 
-## Generate a migration
+## 生成迁移
 
-Choose **Generate migration** from a version's action menu. Migration generation is currently **Beta**.
+在某个版本的操作菜单里选 **Generate migration**。迁移生成目前处于 **Beta**。
 
-The comparison includes:
+比对结果包括：
 
-- Read-only up SQL
-- Read-only down SQL
-- A JSON schema diff
-- A downloadable ZIP containing the SQL files
+- 只读 up SQL
+- 只读 down SQL
+- 一份 JSON schema diff
+- 一份可下载的 ZIP，内含上述 SQL 文件
 
-The selected version is compared with the next older version currently loaded in the history panel. Before generating around a pagination boundary, select **Load more** so the correct older baseline is present.
+选中的版本会与历史面板里已经加载出来的**下一条更早**版本进行比对。要在分页边界附近生成迁移，请先点 **Load more** 以确保基线版本已经加载好。
 
-Generic diagrams can show the JSON diff but cannot generate SQL migration scripts. SQL generation is available for supported concrete database dialects.
+Generic 图表可以显示 JSON diff，但生成 SQL 迁移脚本的能力不可用。SQL 生成只对受支持的具体数据库方言开放。
 
-Migration comparison focuses on schema structure. Canvas positions, zoom, title, notes, subject areas, and other presentation state are not part of the generated SQL diff.
+迁移比对**只关注 schema 结构**。画布上各元素的位置、缩放、标题、注释、主题区域等展示状态都不参与 SQL diff。
 
-<Callout title="Review generated SQL" type="warn">
-  Migration output is a starting point. Review types, constraints, destructive changes, data backfills, and database-specific behavior before applying it to a real database.
+<Callout title="生成的 SQL 要复核" type="warn">
+  迁移输出只是起点。在应用到真实数据库之前，请检查类型、约束、破坏性改动、数据回填与方言相关行为。
 </Callout>
 
-## Delete a version
+## 删除一个版本
 
-The diagram creator and team Admins can select **Delete** from a version's action menu. This permanently removes that checkpoint. Other users with read access can preview versions, while edit access is required to record or restore them.
+图表创建者与团队 Admin 可以在版本的操作菜单里点 **Delete**。这条操作会永久删除该检查点。
 
+其他具有只读权限的用户可以预览版本，但只有具有编辑权限的用户才能记录或恢复。

@@ -1,6 +1,6 @@
 ---
-title: Create a database diagram
-description: Create a drawDB diagram, add tables and fields, define indexes and relationships, and export a database schema.
+title: 创建数据库图表
+description: 在 drawDB 中创建图表、添加表与列、定义索引与关系，并导出数据库 schema。
 ---
 
 import fileNewLight from './img/light/file-new.png';
@@ -16,24 +16,24 @@ import createRelationshipDark from './img/dark/create-relationship.gif';
 import manyToManyLight from './img/light/many-to-many.png';
 import manyToManyDark from './img/dark/many-to-many.png';
 
-Open the [online editor](https://www.drawdb.app/editor). To replace the currently loaded diagram, choose `File → New`, then select a blank diagram or template.
+打开 [在线编辑器](https://www.drawdb.app/editor)。要替换当前加载的图表，选 `File → New`（文件 → 新建），然后选择空白图表或模板。
 
 <div className="image-grid">
   <ThemedImage
     lightSrc={fileNewLight}
     darkSrc={fileNewDark}
-    alt="The File menu with New highlighted"
+    alt="File 菜单，高亮 New"
   />
   <ThemedImage
     lightSrc={createBlankLight}
     darkSrc={createBlankDark}
-    alt="The New diagram dialog with the blank diagram option"
+    alt="New diagram 对话框，带空白图表选项"
   />
 </div>
 
-## Choose a database
+## 选择数据库
 
-Select the database dialect that matches your target:
+选择与目标匹配的数据库方言：
 
 - Generic
 - MySQL
@@ -43,90 +43,90 @@ Select the database dialect that matches your target:
 - Microsoft SQL Server
 - Oracle SQL (Beta)
 
-Database-specific diagrams provide the dialect's native types and features. Generic diagrams use a portable type set and can be exported to multiple SQL dialects.
+选择具体数据库后，图表会展示该方言自带的类型与能力。Generic 图表则使用可移植的类型集合，可以导出为多种 SQL 方言。
 
 <ThemedImage
   lightSrc={pickDbLight}
   darkSrc={pickDbDark}
-  alt="Database selection options in drawDB"
+  alt="drawDB 中的数据库选项"
 />
 
-## Add tables and fields
+## 添加表与列
 
-Add a table from the sidebar or toolbar, give it a name, and define its fields.
+从侧栏或工具栏添加一张表，给它命名，然后定义其中的列。
 
 <ThemedImage
   lightSrc={defineTablesLight}
   darkSrc={defineTablesDark}
-  alt="Adding fields to a table in drawDB"
+  alt="在 drawDB 中给表添加列"
 />
 
-For each field, you can configure:
+对每一列你可以配置：
 
-- Name and datatype
-- Primary, unique, and not-null constraints
-- Autoincrement where supported
-- Default value and check constraint
-- Comment
-- Array dimensions in PostgreSQL
-- Unsigned numeric types in MySQL and MariaDB
+- 名称与数据类型
+- 主键、唯一、非空约束
+- 自增（如果支持）
+- 默认值与 CHECK 表达式
+- 注释
+- PostgreSQL 中的数组维度
+- MySQL 和 MariaDB 中的无符号数值类型
 
-<Callout title="Composite primary keys">
-  Mark multiple fields as primary to generate a composite primary key in SQL output.
+<Callout title="复合主键">
+  把多列同时标记为主键，会在生成的 SQL 中产出复合主键。
 </Callout>
 
-<Callout title="Check constraints" type="warn">
-  Check expressions are inserted into generated SQL as written. Use syntax supported by the target database.
+<Callout title="CHECK 约束" type="warn">
+  CHECK 表达式会按原样写入生成的 SQL。请使用目标数据库支持的语法。
 </Callout>
 
-### Indexes and unique constraints
+### 索引与唯一约束
 
-Indexes can contain one or more fields and can be named or unique. Tables can also define named, multi-field unique constraints. PostgreSQL diagrams additionally support table inheritance.
+索引可以包含一个或多个列，可以命名或设为唯一。表也可以定义命名的、多列的唯一约束。PostgreSQL 图表还额外支持表继承。
 
-## Create relationships
+## 创建关系
 
-Drag from the blue connection point on the foreign-key field to the referenced field. The field types must be compatible. drawDB infers relationship cardinality from primary and unique constraints, and you can adjust it afterward.
+从外键列上的蓝色连接点拖到被引用的列。两端的字段类型必须兼容。drawDB 会根据主键 / 唯一约束推断基数，之后你也可以再调整。
 
 <ThemedImage
   lightSrc={createRelationshipLight}
   darkSrc={createRelationshipDark}
-  alt="Creating a relationship between posts.user_id and users.id"
+  alt="在 posts.user_id 和 users.id 之间建立关系"
 />
 
-In the example, `posts.user_id` references `users.id`. Open the Relationships tab to change the relationship name, swap its foreign and primary sides, configure one or more field pairs, and set labels for the many side.
+示例中 `posts.user_id` 引用了 `users.id`。打开 Relationships（关系）标签可以修改关系名、交换外键 / 主键端、配置一个或多个字段组合以及多端的标签。
 
-Both `ON DELETE` and `ON UPDATE` support:
+`ON DELETE` 与 `ON UPDATE` 都支持：
 
-- No action
-- Restrict
-- Cascade
-- Set null
-- Set default
+- No action（无动作）
+- Restrict（禁止）
+- Cascade（级联）
+- Set null（置空）
+- Set default（置默认值）
 
 <Accordions type="single">
-  <Accordion title="How do I model a many-to-many relationship?">
-    Use a join table containing foreign keys to the two related tables. The join table can also store relationship-specific fields.
+  <Accordion title="如何建模多对多关系？">
+    使用一张联结表（join table），里面包含分别指向两个相关表的外键。联结表本身也可以存关系专属的列。
 
     <ThemedImage
       lightSrc={manyToManyLight}
       darkSrc={manyToManyDark}
-      alt="A many-to-many relationship modeled through a join table"
+      alt="通过联结表建模的多对多关系"
     />
   </Accordion>
 </Accordions>
 
-## Organize the canvas
+## 组织画布
 
-### Subject areas
+### 主题区域
 
-Add subject areas from the sidebar or toolbar to visually group related tables. Subject areas improve navigation but do not generate SQL.
+从侧栏或工具栏添加主题区域，把相关的表在视觉上归类。主题区域能改善导航，但**不会**生成 SQL。
 
-### Notes
+### 注释
 
-Use notes to capture requirements, decisions, or reminders directly on the diagram.
+用注释直接在图表上记录需求、决策或提醒。
 
-## Custom types and enums
+## 自定义类型与枚举
 
-PostgreSQL and Generic diagrams expose a Types tab for diagram-defined composite types. PostgreSQL diagrams also expose an Enums tab. After creating a type or enum, it becomes available when selecting a field datatype.
+PostgreSQL 与 Generic 图表暴露一个 Types（类型）标签，用来定义图表级的复合类型。PostgreSQL 图表还会暴露 Enums（枚举）标签。创建好类型或枚举后，在给列选数据类型时就可以选择它们。
 
-The Settings menu also lets you configure local custom datatype aliases. These aliases are saved in the browser and are distinct from diagram-defined composite types.
+Settings 菜单也允许你配置本地自定义数据类型别名。这些别名保存在浏览器中，与图表级的复合类型是分开的两套机制。

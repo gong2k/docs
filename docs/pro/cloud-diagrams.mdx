@@ -1,66 +1,66 @@
 ---
-title: Cloud diagrams and workspaces
-description: Understand local and cloud drawDB diagrams, cloud autosave, workspace scoping, opening files, moving diagrams, and read-only access.
+title: 云图表与工作区
+description: 理解本地与云 drawDB 图表、云自动保存、工作区范围、打开文件、移动图表、只读访问。
 ---
 
-drawDB can show browser-local and cloud-backed diagrams in the same editor. Knowing which copy is open prevents sharing and access surprises.
+drawDB 可以在同一个编辑器里同时展示浏览器本地与云端备份的图表。搞清楚当前打开的是哪一份，能避免分享与访问上的意外。
 
-## Local and cloud diagrams
+## 本地与云端图表
 
-| | Local | Cloud |
+|  | 本地 | 云端 |
 | --- | --- | --- |
-| Storage | Current browser | Selected drawDB workspace |
-| Account required | No | Yes |
-| Available on another device | No | Yes, with access |
-| Public sharing | OSS snapshot sharing only | Pro public links and team access |
-| Version history and MCP | No | Yes, with an eligible plan |
-| AI assistant | Yes, for an eligible signed-in account | Yes, with an eligible plan |
-| Live collaboration | No | Team cloud diagrams only |
+| 存储位置 | 当前浏览器 | 选定的 drawDB 工作区 |
+| 是否需要账号 | 否 | 是 |
+| 在其他设备可访问 | 否 | 是，前提有访问权限 |
+| 公开分享 | 仅开源版快照分享 | Pro 公开链接 + 团队访问 |
+| 版本历史与 MCP | 否 | 是（前提有匹配的套餐） |
+| AI 助手 | 是（前提登录账号有云端权限） | 是（前提有匹配的套餐） |
+| 实时协作 | 否 | 仅团队云图表可 |
 
-Use **File → Open** to browse both sources. The list identifies Local and Cloud items and provides search, sorting, database, source, and ownership filters.
+用 **File → Open** 可以同时浏览两个来源。列表中会标注 Local 与 Cloud，并提供搜索、排序、数据库、来源、所有权筛选。
 
-## Move a local diagram to the cloud
+## 把本地图表搬上云
 
-Open the local diagram and select **Move** in the cloud prompt. drawDB uploads it to the active workspace before switching the editor to the cloud copy.
+打开本地图表，在云端提示里选 **Move**。drawDB 会先把它上传到当前工作区，再把编辑器切到云副本。
 
-Wait for the completed save state before closing the tab. If the write fails, the local diagram remains the recovery source.
+写入完成前请不要关闭页面；如果写入失败，本地图表仍是你的兜底。
 
-## How cloud saving behaves
+## 云保存的行为
 
-Cloud changes are saved in sequence. When edits happen quickly, drawDB combines pending work rather than sending overlapping writes. The **Last saved** value is updated only after the cloud write completes.
+云端的改动是**串行**保存的。如果编辑动作很快，drawDB 会把待写的内容合并提交，而不会用重叠请求打架。**Last saved**（最近保存）只有当云写入完成后才会刷新。
 
-If a write is still pending when you try to leave, the browser may warn you. Remain on the page until the save completes when possible.
+写动作还在进行而你想离开页面，浏览器可能会给警告。能等就尽量等写入完成。
 
-<Callout title="Export important diagrams too" type="info">
-  Cloud storage protects against browser-data loss, but an exported JSON or DDB copy is still useful before large changes, access changes, or account transitions.
+<Callout title="重要的图表也要再导出" type="info">
+  云存储能防止浏览器数据丢失，但在做大量改动、变更访问、移交账号之前，仍建议用 JSON / DDB 另存一份备份。
 </Callout>
 
-## Workspace scoping
+## 工作区范围
 
-The active workspace controls:
+当前工作区决定：
 
-- Which cloud diagrams appear in the normal list.
-- Where new cloud diagrams are created.
-- Which workspace's most recent diagram opens after switching.
-- Which team membership and sharing rules apply.
+- 普通列表里能看到哪些云图表。
+- 新建云图表会落在哪里。
+- 切换工作区后，会打开哪个工作区最近编辑过的图表。
+- 适用的团队成员关系与分享规则。
 
-A diagram belongs to its workspace, not permanently to its original creator. If the creator later leaves that team, access follows the remaining team membership and permissions.
+图表属于它所在的工作区，**不是**永久属于创建者。如果创建者后来退出该团队，访问会按剩余的团队成员与权限走。
 
-## Open a cloud diagram
+## 打开一张云图表
 
-- Opening `/editor` while signed in returns to the most recently modified accessible cloud diagram.
-- **File → Open** lets you select another diagram and inspect its source and owner.
-- Switching workspaces opens that workspace's most recent diagram or a blank canvas if the workspace is empty.
-- Opening a direct diagram URL also synchronizes the active workspace when you still belong to it.
+- 登录后访问 `/editor` 会打开你能访问的最近修改过的云图表。
+- 用 **File → Open** 可以选其他图表，并查看其来源与所有者。
+- 切换工作区会打开该工作区最近的图表；工作区为空时打开空白画布。
+- 直接用图表 URL 打开，如果你仍属于该图表对应的工作区，工作区也会被同步切到对应那条。
 
-## Read-only cloud access
+## 只读云访问
 
-A diagram opens read-only when your permission is **Can view** or your plan no longer permits cloud writes.
+当你的权限是 **Can view**（仅查看），或你的套餐已不再允许写云端时，图表会以只读模式打开。
 
-In read-only mode, you can inspect the diagram, but write-dependent actions such as saving changes, changing sharing settings, using AI, creating API keys, or joining a live editing room are unavailable.
+只读模式下你可以浏览图表，但所有依赖写操作的功能都不可用：保存、修改分享设置、用 AI、创建 API Key、加入实时协作房间。
 
-If a trial or subscription ends, existing cloud data is retained. Restoring an eligible plan makes writable features available again.
+试用或订阅结束后，云端数据仍然保留；恢复匹配权限的套餐后，可写功能会自动恢复。
 
-## Delete a cloud diagram
+## 删除一张云图表
 
-The diagram creator and team admins can manage and delete a cloud diagram while they remain members of its workspace. Deletion removes the diagram for everyone with access, so export a backup first when the schema may be needed later.
+图表创建者与团队 Admin 在仍是该图表所在工作区成员时，可以管理与删除该云图表。删除会让所有能访问它的人都看不到，所以在 schema 以后还可能用上的情况下，请先导出备份。

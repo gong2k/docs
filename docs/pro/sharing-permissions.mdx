@@ -1,79 +1,79 @@
 ---
-title: Share Pro diagrams and manage permissions
-description: Share drawDB Pro cloud diagrams with public links, team audiences, default access, and per-member view or edit permissions.
+title: 分享 Pro 图表与管理权限
+description: 通过公开链接、团队受众、默认访问与成员级视图/编辑权限，分享 drawDB Pro 云图表。
 ---
 
-Pro sharing controls who can open a cloud diagram and whether signed-in team members can edit it.
+Pro 的分享控制谁能打开一张云图表，以及已登录团队成员能否编辑它。
 
-## Before sharing
+## 分享之前
 
-A diagram must:
+图表必须满足：
 
-- Be saved to the cloud.
-- Contain at least one table.
-- Be managed by the creator or a team Admin if sharing settings need to change.
+- 已保存到云端。
+- 至少包含一张表。
+- 如果需要变更分享设置，由创建者或团队 Admin 管理。
 
-When sharing controls are disabled, first confirm the diagram is labeled **Cloud** and is not empty.
+当分享控件被禁用时，先确认图表标记为 **Cloud**，且不是空的。
 
-## Share from Pro Solo
+## 通过 Pro Solo 分享
 
-Pro Solo creates a public, view-only URL. Anyone with the URL can open the diagram without signing in.
+Pro Solo 创建的是公开、仅查看的 URL。任何拿到 URL 的人不用登录就能打开这张图表。
 
-1. Open **Share**.
-2. Wait for the public link to be created.
-3. Select **Copy link**.
+1. 打开 **Share**。
+2. 等公开链接创建完成。
+3. 点 **Copy link**。
 
-Use **Revoke link** when a URL may have been exposed or should no longer work. drawDB invalidates the old token and immediately prepares a replacement link.
+URL 可能泄露或想停止访问时，点 **Revoke link**。drawDB 会让旧 token 失效，并立刻准备好替换链接。
 
-## Share from Pro Team
+## 通过 Pro Team 分享
 
-Team diagrams support three link audiences:
+Team 图表支持三种链接受众：
 
-| Audience | Behavior |
+| 受众 | 行为 |
 | --- | --- |
-| **Invite only** | Only members with an effective individual permission can open it. See the current limitation below. |
-| **Everyone in the team** | Signed-in workspace members use the diagram's default access. |
-| **Anyone with the link** | The public URL opens without an account and is always view-only. |
+| **Invite only**（仅邀请） | 仅具有有效个人权限的成员可打开。见下方"当前限制"。 |
+| **Everyone in the team**（团队内所有人） | 已登录的工作区成员按图表的默认权限访问。 |
+| **Anyone with the link**（任何持有链接者） | 公开 URL 不要账号登录，永远是只读。 |
 
-For non-public audiences, **Copy link** copies the normal diagram URL. The recipient must sign in and have the required team and diagram access.
+对非公开受众，**Copy link** 复制的就是普通的图表 URL。收件人必须登录，且具备相应的团队与图表权限。
 
-## Set the team default
+## 设置团队默认
 
-For **Everyone in the team**, choose the default access:
+对 **Everyone in the team**，可以选默认访问级别：
 
-- **Can view:** members can inspect but not edit.
-- **Can edit:** members can change the diagram and participate in live collaboration.
-- **No access:** members need individual access before opening it.
+- **Can view：** 成员可查看但不能编辑。
+- **Can edit：** 成员可改图，并能加入实时协作。
+- **No access：** 成员需要被单独授予权限后才可以打开。
 
-Use the member list to grant or revoke access for a specific teammate. Available choices are **Can view**, **Can edit**, and **Revoke access**.
+成员列表里可为某位成员单独授予或撤销权限。可选项是 **Can view**、**Can edit** 与 **Revoke access**。
 
-<Callout title="Current individual Can view limitation" type="warn">
-  In the current release, an individual **Can view** selection does not create a read override when the audience is **Invite only** or the team default is **No access**. It falls back to the audience/default instead. Use **Can edit** for individual Invite-only access, or use a team-wide **Can view** default or public read-only link when editing is not appropriate.
+<Callout title="当前个人 Can view 的局限" type="warn">
+  在当前版本中，当受众是 **Invite only** 或团队默认是 **No access** 时，单独勾选 **Can view** 不会形成独立的读权限——它会回落到"按受众/默认"那一档。要让某个人能看而不能改，要么直接给他 **Can edit**（但不能编辑是另外的事），要么把团队默认设为 **Can view**，要么用公开只读链接。
 </Callout>
 
-The diagram creator and team Admins retain management access while they remain members of the diagram's workspace.
+图表创建者与团队 Admin 在仍是该图表所在工作区的成员期间，保留管理权限。
 
-<Callout title="Permissions apply only to team members" type="info">
-  Per-person permissions cannot target an arbitrary external user. Invite the person to the team first, or use a public view-only link.
+<Callout title="权限只对团队成员生效" type="info">
+  个人级权限不能指向团队外的某个人。需要先把那个人邀请进团队，或者用公开只读链接。
 </Callout>
 
-## View-only behavior
+## 只读行为
 
-A view-only member can open the cloud diagram and inspect its sharing state, but cannot change the schema, permissions, or public-link settings. View-only access also does not permit joining a live editing room.
+只读成员可以打开该云图表、查看分享状态，但**不能**改 schema、权限或公开链接设置；也不能加入实时编辑房间。
 
-Public-link visitors receive the same read-only diagram experience without account or team access.
+公开链接访客得到同样的只读体验，不要求账号或团队成员关系。
 
-## Manage access from the diagram list
+## 从图表列表中管理权限
 
-The creator and team Admins can open **File → Open** and use the access action on a cloud row. This is useful when the diagram does not need to be opened before permissions are changed.
+创建者与团队 Admin 可以打开 **File → Open**，对云端那一行用"访问"动作。这在不开图就能改权限时特别有用。
 
-## Secure a public link
+## 保护公开链接
 
-A public link is a bearer URL: possession of the link is enough to view the diagram.
+公开链接是一种"持 URL 即凭据"的链接：拥有链接就拥有查看权限。
 
-- Do not include passwords, credentials, or production secrets in a diagram.
-- Revoke and replace a link after accidental disclosure.
-- Switch the audience away from public when anonymous access is no longer needed.
-- Remember that previously downloaded or captured information cannot be recalled.
+- 不要往图表里塞密码、凭证或生产环境的秘密。
+- 不小心暴露后，撤销链接并生成新的。
+- 不再需要匿名访问时，把受众切到非公开。
+- 已被下载或截屏的信息无法收回。
 
-For simultaneous editing, continue with [Live collaboration](/pro/live-collaboration).
+需要多人同时编辑，请看 [实时协作](/pro/live-collaboration)。
